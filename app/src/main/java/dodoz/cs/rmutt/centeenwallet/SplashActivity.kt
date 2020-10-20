@@ -7,7 +7,7 @@ import android.os.Handler
 
 class SplashActivity : AppCompatActivity() {
 
-    private var handler : Handler? = null
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {

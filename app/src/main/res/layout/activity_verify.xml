@@ -149,10 +149,10 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="1dp"
             android:text="(รหัสใช้ได้เพียงครั้งเดียว)"
-            android:textAlignment="center"
             android:textColor="@color/white"
             android:textSize="14dp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:gravity="center_horizontal" />
 
 
     </LinearLayout>

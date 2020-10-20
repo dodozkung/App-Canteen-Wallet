@@ -1,7 +1,7 @@
-plugins {
-    id 'com.android.application'
-    id 'kotlin-android'
-}
+
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
 
 android {
 
@@ -45,5 +45,10 @@ dependencies {
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+    //pin
     implementation 'com.chaos.view:pinview:1.4.4'
+    //loading
+    implementation 'com.github.ybq:Android-SpinKit:1.4.0'
+    //profile
+    implementation 'de.hdodenhof:circleimageview:3.1.0'
 }
