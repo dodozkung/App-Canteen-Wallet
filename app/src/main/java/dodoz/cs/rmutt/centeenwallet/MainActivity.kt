@@ -19,6 +19,11 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+        payqrcodemain!!.setOnClickListener {
+            val intent = Intent(this,PayQrcodeActivity::class.java)
+            startActivity(intent)
+        }
+
 
 
     }

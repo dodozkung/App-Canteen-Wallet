@@ -51,4 +51,7 @@ dependencies {
     implementation 'com.github.ybq:Android-SpinKit:1.4.0'
     //profile
     implementation 'de.hdodenhof:circleimageview:3.1.0'
+    //qrcode
+    implementation 'me.dm7.barcodescanner:zxing:1.9.13'
+    implementation 'me.dm7.barcodescanner:zbar:1.9.13'
 }
