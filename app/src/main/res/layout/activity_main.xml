@@ -10,7 +10,6 @@
 
 
 
-
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -89,6 +88,26 @@
             android:src="@drawable/bgcamera"
             android:layout_centerInParent="true"/>
 
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="ยอดเงินที่ใช้ได้"
+                android:textColor="@color/black"
+                android:textSize="25dp"
+                android:textStyle="bold"
+                android:layout_marginTop="60dp"
+                android:gravity="center_horizontal" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="000.00"
+                android:textColor="@color/black"
+                android:textSize="35dp"
+                android:textStyle="bold"
+                android:layout_marginTop="100dp"
+                android:gravity="center_horizontal" />
+
+
         </RelativeLayout>
 
 <!--        <RelativeLayout-->
@@ -105,8 +124,8 @@
 <!--        </RelativeLayout>-->
 
         <RelativeLayout
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
             android:layout_alignParentRight="true"
             android:layout_alignParentBottom="true">
             <ImageView
@@ -128,7 +147,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="70dp"
         android:weightSum="10">
 
         <LinearLayout
@@ -136,11 +155,32 @@
             android:layout_height="wrap_content"
             android:layout_weight="5"
             android:gravity="center"
+            android:orientation="vertical"
             >
-            <ImageView
-                android:layout_width="80dp"
-                android:layout_height="80dp"
-                android:src="@drawable/bgcamera"/>
+            <RelativeLayout
+                android:id="@+id/transfermain"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:src="@drawable/bgcamera"/>
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/ic_transfer"
+                    android:layout_centerInParent="true"/>
+
+            </RelativeLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="โอนเงิน"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:gravity="center_horizontal"
+                android:layout_marginTop="20dp"
+                android:textSize="25dp"/>
         </LinearLayout>
 
         <LinearLayout
@@ -148,8 +188,10 @@
             android:layout_height="wrap_content"
             android:layout_weight="5"
             android:gravity="center"
+            android:orientation="vertical"
             >
             <RelativeLayout
+                android:id="@+id/payqrcodemain"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
             <ImageView
@@ -157,16 +199,27 @@
                 android:layout_height="80dp"
                 android:src="@drawable/bgcamera"/>
                 <ImageView
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:src="@drawable/ic_ar_camera"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/ic_qr_code"
                     android:layout_centerInParent="true"/>
 
             </RelativeLayout>
 
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="จ่ายเงิน"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:gravity="center_horizontal"
+                android:layout_marginTop="20dp"
+                android:textSize="25dp"/>
+
 
         </LinearLayout>
     </LinearLayout>
+
 
 
 
