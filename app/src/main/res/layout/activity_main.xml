@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/bg"
-    tools:context=".MainActivity">
-
-
+    android:orientation="vertical"
+    tools:context="dodoz.cs.rmutt.canteenwallet.MainActivity">
 
 
     <RelativeLayout
@@ -22,132 +21,133 @@
             <ImageView
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:layout_marginTop="50dp"
                 android:layout_marginLeft="25dp"
-                android:src="@drawable/ic_profile"
-                />
+                android:layout_marginTop="50dp"
+                android:src="@drawable/ic_profile" />
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
                 android:text="My Account"
                 android:textColor="@color/white"
                 android:textSize="15dp"
-                android:textStyle="bold"
-                android:layout_marginTop="10dp"
 
-                android:layout_marginLeft="10dp"/>
+                android:textStyle="bold" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="5dp"
                 android:text="xxx-xxx-xxx"
                 android:textColor="@color/white"
-                android:textStyle="bold"
-                android:layout_marginTop="5dp"
-                android:layout_marginLeft="10dp"/>
+                android:textStyle="bold" />
 
         </LinearLayout>
 
         <RelativeLayout
             android:layout_width="100dp"
             android:layout_height="120dp"
-            android:layout_centerVertical="true"
-            android:layout_alignParentRight="true">
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true">
+
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="25dp"
-                android:src="@drawable/rmutt"/>
+                android:src="@drawable/rmutt" />
         </RelativeLayout>
 
     </RelativeLayout>
 
     <LinearLayout
-        android:id="@+id/money"
+        android:layout_marginHorizontal="100dp"
+        android:layout_marginVertical="100dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
         android:gravity="center"
-        android:layout_centerVertical="true"
-        >
-
-    <RelativeLayout
-        android:layout_width="200dp"
-        android:layout_height="200dp"
+        android:orientation="vertical"
 
         >
 
         <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+
             >
 
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:src="@drawable/bgcamera"
-            android:layout_centerInParent="true"/>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="ยอดเงินที่ใช้ได้"
-                android:textColor="@color/black"
-                android:textSize="25dp"
-                android:textStyle="bold"
-                android:layout_marginTop="60dp"
-                android:gravity="center_horizontal" />
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="000.00"
-                android:textColor="@color/black"
-                android:textSize="35dp"
-                android:textStyle="bold"
-                android:layout_marginTop="100dp"
-                android:gravity="center_horizontal" />
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_centerInParent="true"
+                    android:src="@drawable/bgcamera" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="60dp"
+                    android:gravity="center_horizontal"
+                    android:text="ยอดเงินที่ใช้ได้"
+                    android:textColor="@color/black"
+                    android:textSize="25dp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="100dp"
+                    android:gravity="center_horizontal"
+                    android:text="000.00"
+                    android:textColor="@color/black"
+                    android:textSize="35dp"
+                    android:textStyle="bold" />
+
+
+            </RelativeLayout>
+
+            <!--        <RelativeLayout-->
+            <!--            android:layout_width="50dp"-->
+            <!--            android:layout_height="50dp"-->
+            <!--            android:layout_alignParentRight="true"-->
+            <!--            android:layout_alignParentBottom="true">-->
+            <!--            <ImageView-->
+            <!--                android:layout_width="match_parent"-->
+            <!--                android:layout_height="wrap_content"-->
+
+            <!--                android:src="@drawable/ic_refreshstoke"-->
+            <!--                />-->
+            <!--        </RelativeLayout>-->
+
+            <RelativeLayout
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentBottom="true">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_refresh"
+
+                    />
+            </RelativeLayout>
 
 
         </RelativeLayout>
-
-<!--        <RelativeLayout-->
-<!--            android:layout_width="50dp"-->
-<!--            android:layout_height="50dp"-->
-<!--            android:layout_alignParentRight="true"-->
-<!--            android:layout_alignParentBottom="true">-->
-<!--            <ImageView-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-
-<!--                android:src="@drawable/ic_refreshstoke"-->
-<!--                />-->
-<!--        </RelativeLayout>-->
-
-        <RelativeLayout
-            android:layout_width="45dp"
-            android:layout_height="45dp"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentBottom="true">
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_refresh"
-
-                />
-        </RelativeLayout>
-
-
-
-    </RelativeLayout>
 
     </LinearLayout>
 
     <LinearLayout
-        android:layout_below="@+id/money"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/money"
         android:orientation="horizontal"
-        android:layout_marginTop="70dp"
         android:weightSum="10">
 
         <LinearLayout
@@ -155,32 +155,35 @@
             android:layout_height="wrap_content"
             android:layout_weight="5"
             android:gravity="center"
-            android:orientation="vertical"
-            >
+            android:orientation="vertical">
+
             <RelativeLayout
                 android:id="@+id/transfermain"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
+
                 <ImageView
                     android:layout_width="80dp"
                     android:layout_height="80dp"
-                    android:src="@drawable/bgcamera"/>
+                    android:src="@drawable/bgcamera" />
+
                 <ImageView
                     android:layout_width="50dp"
                     android:layout_height="50dp"
-                    android:src="@drawable/ic_transfer"
-                    android:layout_centerInParent="true"/>
+                    android:layout_centerInParent="true"
+                    android:src="@drawable/ic_transfer" />
 
             </RelativeLayout>
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:gravity="center_horizontal"
                 android:text="โอนเงิน"
                 android:textColor="@color/white"
-                android:textStyle="bold"
-                android:gravity="center_horizontal"
-                android:layout_marginTop="20dp"
-                android:textSize="25dp"/>
+                android:textSize="25dp"
+                android:textStyle="bold" />
         </LinearLayout>
 
         <LinearLayout
@@ -188,43 +191,39 @@
             android:layout_height="wrap_content"
             android:layout_weight="5"
             android:gravity="center"
-            android:orientation="vertical"
-            >
+            android:orientation="vertical">
+
             <RelativeLayout
                 android:id="@+id/payqrcodemain"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
-            <ImageView
-                android:layout_width="80dp"
-                android:layout_height="80dp"
-                android:src="@drawable/bgcamera"/>
+
+                <ImageView
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:src="@drawable/bgcamera" />
+
                 <ImageView
                     android:layout_width="50dp"
                     android:layout_height="50dp"
-                    android:src="@drawable/ic_qr_code"
-                    android:layout_centerInParent="true"/>
+                    android:layout_centerInParent="true"
+                    android:src="@drawable/ic_qr_code" />
 
             </RelativeLayout>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:gravity="center_horizontal"
                 android:text="จ่ายเงิน"
                 android:textColor="@color/white"
-                android:textStyle="bold"
-                android:gravity="center_horizontal"
-                android:layout_marginTop="20dp"
-                android:textSize="25dp"/>
+                android:textSize="25dp"
+                android:textStyle="bold" />
 
 
         </LinearLayout>
     </LinearLayout>
 
 
-
-
-
-
-
-
-</RelativeLayout>
+</LinearLayout>

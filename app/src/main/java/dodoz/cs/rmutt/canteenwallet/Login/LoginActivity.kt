@@ -1,7 +1,9 @@
-package dodoz.cs.rmutt.centeenwallet
+package dodoz.cs.rmutt.canteenwallet.Login
 
 import android.content.Intent
 import android.os.Bundle
+import dodoz.cs.rmutt.canteenwallet.BaseActivity
+import dodoz.cs.rmutt.canteenwallet.R
 import kotlinx.android.synthetic.main.activity_login.*
 
 class LoginActivity : BaseActivity() {

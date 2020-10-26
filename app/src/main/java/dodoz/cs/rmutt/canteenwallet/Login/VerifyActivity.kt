@@ -1,14 +1,15 @@
-package dodoz.cs.rmutt.centeenwallet
+package dodoz.cs.rmutt.canteenwallet.Login
 
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.graphics.drawable.Drawable
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.view.View
 import androidx.annotation.DrawableRes
 import androidx.core.content.ContextCompat
+import dodoz.cs.rmutt.canteenwallet.BaseActivity
+import dodoz.cs.rmutt.canteenwallet.R
 import kotlinx.android.synthetic.main.activity_verify.*
 
 class VerifyActivity : BaseActivity() {

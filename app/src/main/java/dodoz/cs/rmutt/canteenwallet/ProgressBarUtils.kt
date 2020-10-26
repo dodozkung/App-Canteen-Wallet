@@ -1,4 +1,4 @@
-package dodoz.cs.rmutt.centeenwallet
+package dodoz.cs.rmutt.canteenwallet
 
 import android.app.Dialog
 import android.content.Context

@@ -1,8 +1,10 @@
-package dodoz.cs.rmutt.centeenwallet
+package dodoz.cs.rmutt.canteenwallet.Login
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import dodoz.cs.rmutt.canteenwallet.BaseActivity
+import dodoz.cs.rmutt.canteenwallet.MainActivity
+import dodoz.cs.rmutt.canteenwallet.R
 import kotlinx.android.synthetic.main.activity_register.*
 
 class RegisterActivity : BaseActivity() {
@@ -11,7 +13,7 @@ class RegisterActivity : BaseActivity() {
         setContentView(R.layout.activity_register)
 
         btnconprofile!!.setOnClickListener {
-            val intent = Intent(this,MainActivity::class.java)
+            val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
         }
     }

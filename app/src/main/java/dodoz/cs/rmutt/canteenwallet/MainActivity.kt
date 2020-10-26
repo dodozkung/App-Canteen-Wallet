@@ -1,11 +1,10 @@
-package dodoz.cs.rmutt.centeenwallet
+package dodoz.cs.rmutt.canteenwallet
 
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.google.android.material.snackbar.Snackbar
-import dodoz.cs.rmutt.centeenwallet.R
+import dodoz.cs.rmutt.canteenwallet.PayQrcode.PayQrcodeActivity
+import dodoz.cs.rmutt.canteenwallet.Transfer.TransferActivity
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -15,12 +14,12 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         transfermain!!.setOnClickListener {
-            val intent = Intent(this,TransferActivity::class.java)
+            val intent = Intent(this, TransferActivity::class.java)
             startActivity(intent)
         }
 
         payqrcodemain!!.setOnClickListener {
-            val intent = Intent(this,PayQrcodeActivity::class.java)
+            val intent = Intent(this, PayQrcodeActivity::class.java)
             startActivity(intent)
         }
 
