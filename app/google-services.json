@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "470571516570",
+    "firebase_url": "https://rmutt-canteen-wallet.firebaseio.com",
+    "project_id": "rmutt-canteen-wallet",
+    "storage_bucket": "rmutt-canteen-wallet.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:470571516570:android:8a83c49133d06834e09523",
+        "android_client_info": {
+          "package_name": "dodoz.cs.rmutt.centeenwallet"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "470571516570-s58gi8jgmsb0rgejsaqealv7vbloq83t.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCJGFK-dPOxKb5RdbfGUFFKG-44ezToNiQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "470571516570-s58gi8jgmsb0rgejsaqealv7vbloq83t.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
