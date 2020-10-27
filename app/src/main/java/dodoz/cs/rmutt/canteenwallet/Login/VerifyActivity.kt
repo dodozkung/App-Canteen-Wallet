@@ -82,10 +82,10 @@ class VerifyActivity : BaseActivity() {
         }
 
         btnconfirmotp!!.setOnClickListener(View.OnClickListener {
-            showDialog()
+//            showDialog()
             val code = otpconfirm!!.text.toString().trim()
             if (code.isEmpty() || code.length < 6) {
-                hideDialog()
+//                hideDialog()
                 otpconfirm!!.error = "รหัส OTP ผิดกรุณาลองอีกครั้ง"
                 otpconfirm!!.requestFocus()
                 return@OnClickListener
@@ -157,13 +157,13 @@ class VerifyActivity : BaseActivity() {
                 if (dataSnapshot.exists()) {
                     val info = dataSnapshot.getValue(dodoz.cs.rmutt.canteenwallet.UserInfo::class.java)
                     if (info!!.name == null || info.name.equals("")) {
-                        hideDialog()
+//                        hideDialog()
                         timerstate = true
                         val setup = Intent(this@VerifyActivity, RegisterActivity::class.java)
                         startActivity(setup)
                         finishAffinity()
                     } else {
-                        hideDialog()
+//                        hideDialog()
                         timerstate = true
                         val intentGo = Intent(this@VerifyActivity, MainActivity::class.java)
                         startActivity(intentGo)
@@ -249,14 +249,14 @@ class VerifyActivity : BaseActivity() {
                             return@addOnFailureListener
                         }
                 } else {
-                    hideDialog()
+//                    hideDialog()
                     if (task.exception is FirebaseAuthInvalidCredentialsException) {
                         Toast.makeText(this@VerifyActivity, "รหัสยืนยัน(OTP)ไม่ถูกต้อง", Toast.LENGTH_SHORT).show()
                     }
                 }
             }
             .addOnFailureListener {
-                hideDialog()
+//                hideDialog()
                 Log.d("Error", it.message.toString())
             }
     }
