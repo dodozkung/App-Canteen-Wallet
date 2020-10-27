@@ -2,6 +2,7 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'com.google.gms.google-services'
+apply plugin: 'com.google.firebase.crashlytics'
 
 android {
 
@@ -9,7 +10,7 @@ android {
     buildToolsVersion "29.0.3"
 
     defaultConfig {
-        applicationId "dodoz.cs.rmutt.centeenwallet"
+        applicationId "dodoz.cs.rmutt.canteenwallet"
         minSdkVersion 16
         targetSdkVersion 29
         versionCode 1
@@ -43,10 +44,15 @@ dependencies {
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
     implementation 'androidx.navigation:navigation-fragment-ktx:2.2.2'
     implementation 'androidx.navigation:navigation-ui-ktx:2.2.2'
-    implementation 'com.google.firebase:firebase-auth:19.3.2'
-    implementation 'com.google.firebase:firebase-database:19.3.1'
-    implementation 'com.google.firebase:firebase-firestore:21.5.0'
-    implementation 'com.google.firebase:firebase-storage:19.1.1'
+    implementation platform('com.google.firebase:firebase-bom:25.12.0')
+    implementation 'com.google.firebase:firebase-auth-ktx'
+    implementation 'com.google.firebase:firebase-analytics-ktx'
+    implementation 'com.google.firebase:firebase-analytics:17.6.0'
+    implementation 'com.google.firebase:firebase-auth:19.4.0'
+    implementation 'com.google.firebase:firebase-database:19.5.1'
+    implementation 'com.google.firebase:firebase-firestore:21.7.1'
+    implementation 'com.google.firebase:firebase-storage:19.2.0'
+    implementation 'com.google.firebase:firebase-crashlytics:17.2.2'
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'

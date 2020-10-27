@@ -8,9 +8,9 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:470571516570:android:8a83c49133d06834e09523",
+        "mobilesdk_app_id": "1:470571516570:android:91e9e2f606fa1808e09523",
         "android_client_info": {
-          "package_name": "dodoz.cs.rmutt.centeenwallet"
+          "package_name": "dodoz.cs.rmutt.canteenwallet"
         }
       },
       "oauth_client": [
