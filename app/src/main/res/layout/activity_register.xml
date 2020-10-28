@@ -48,6 +48,7 @@
                         android:layout_alignParentRight="true"
                         android:layout_alignParentBottom="true">
                         <ImageView
+
                             android:layout_width="30dp"
                             android:layout_height="30dp"
                             android:layout_alignParentRight="true"
@@ -78,7 +79,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center_horizontal"
-                    android:text="กรุณากรอกชื่อและนามสกลจริง\nเพื่อใช้ยืนยันการรับรางวัล"
+                    android:text="กรุณากรอกข้อมูลตามความเป็นจริง"
                     android:textColor="@color/white"
                     android:textStyle="bold" />
 
@@ -194,7 +195,6 @@
                     android:editable="false"
                     android:focusable="false"
                     android:inputType="phone"
-                    android:text="0000000000"
                     android:maxLength="10"
                     android:padding="10dp"
                     android:textSize="16dp"
@@ -219,6 +219,31 @@
                     android:drawablePadding="15dp"
                     android:gravity="center_vertical"
                     android:hint="อีเมล"
+                    android:textColorHint="@color/Rmutt"
+                    android:inputType="textEmailAddress"
+                    android:padding="10dp"
+                    android:textSize="16dp"
+                    android:textColor="@color/Rmutt"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp">
+
+                <EditText
+                    android:id="@+id/edtidcard"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="40dp"
+                    android:layout_marginRight="40dp"
+                    android:background="@drawable/frametext"
+                    android:drawableStart="@drawable/ic_id_card"
+                    android:drawableLeft="@drawable/ic_id_card"
+                    android:drawablePadding="15dp"
+                    android:gravity="center_vertical"
+                    android:hint="รหัสนักศึกษา(มีขีด)"
                     android:textColorHint="@color/Rmutt"
                     android:inputType="textEmailAddress"
                     android:padding="10dp"

@@ -236,7 +236,7 @@ class VerifyActivity : BaseActivity() {
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
                     val intent = intent
-                    val mobile = intent.getStringExtra("Phone")
+                    val mobile = intent.getStringExtra("phone")
                     val userID = mAuth!!.currentUser?.uid
                     val currentUserDB = FirebaseDatabase.getInstance().getReference(Common.USERS).child(Common.PHONE).child(userID!!)
                     val info = HashMap<String, Any>()

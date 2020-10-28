@@ -16,11 +16,11 @@ class LoginActivity : BaseActivity() {
         btnconotp!!.setOnClickListener(View.OnClickListener {
 //            showDialog()
             val phone = phonenumber!!.text.toString()
-            if (phone.isEmpty() || phone.length < 10) {
-                if (!phone.startsWith("0") && phone.length == 9) {
+            if (phone.isEmpty() || phone.length == 10) {
+                if (phone.length == 10) {
 //                    hideDialog()
                     val intent = Intent(this, VerifyActivity::class.java)
-                    intent.putExtra("Phone", "0$phone")
+                    intent.putExtra("Phone", "$phone")
                     startActivity(intent)
                 } else {
 //                    hideDialog()
@@ -29,7 +29,7 @@ class LoginActivity : BaseActivity() {
                     return@OnClickListener
                 }
             } else {
-                if (!phone.startsWith("0") && phone.length == 9) {
+                if (phone.length == 10) {
 //                    hideDialog()
                     val intent = Intent(this, VerifyActivity::class.java)
                     intent.putExtra("Phone", phone)

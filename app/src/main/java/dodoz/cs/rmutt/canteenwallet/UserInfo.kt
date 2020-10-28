@@ -7,5 +7,7 @@ data class UserInfo (
     var birthday: String? = "",
     var sex: String? = "",
     var ProfileImageUrl: String? = "",
-    var Bath: String? = ""
+    var idcard: String? = "",
+    var money: String? = "",
+    var password: String? = ""
 )

@@ -11,4 +11,8 @@
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <string name="title_activity_verify">VerifyActivity</string>
     <string name="title_activity_main">MainActivity</string>
+
+
+    <string name="male">ชาย</string>
+    <string name="female">หญิง</string>
 </resources>
