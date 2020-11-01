@@ -230,6 +230,7 @@ class RegisterActivity : BaseActivity() {
                 if (p0.exists()) {
 //                    hideDialog()
                     val phonemobile = p0.value.toString()
+                    println(phonemobile)
                     edtphone.setText(phonemobile)
 //                    edtphone.hint = phonemobile//edittext ใช้ settext
                 }
@@ -240,7 +241,7 @@ class RegisterActivity : BaseActivity() {
     private fun updateLabel() {
         val myFormat = "yyyy-MM-dd"
         val sdf = SimpleDateFormat(myFormat, Locale.US)
-        val myFormatshow = "dd-MM-yyyy"
+        val myFormatshow = "dd/MM/yyyy"
         val sdfShow = SimpleDateFormat(myFormatshow, Locale.US)
         dateTime = sdf.format(myCalendar.time)
 
@@ -267,7 +268,7 @@ class RegisterActivity : BaseActivity() {
             addonce = true
             val current = org.threeten.bp.LocalDateTime.now()
             val formatter =
-                org.threeten.bp.format.DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm:ss")
+                org.threeten.bp.format.DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss")
             val currentDatetime = current.format(formatter)
 
             runBlocking {
@@ -276,27 +277,6 @@ class RegisterActivity : BaseActivity() {
                         FirebaseDatabase.getInstance().getReference(Common.USERS)
                             .child(Common.PHONE).child(userID)
                     currentUserDB.child("create_at").setValue(currentDatetime)
-                }.await()
-                async {
-                    val permissRef =
-                        FirebaseDatabase.getInstance().getReference("ActivePermission").push()
-                    val permiss = HashMap<String, Any>()
-                    permiss["UserID"] = userID
-                    permiss["Role"] = "Member"
-                    permiss["active_at"] = currentDatetime
-                    permissRef.setValue(permiss)
-                        .addOnCompleteListener {
-                            hideDialog()
-                            val intentGo =
-                                Intent(this@RegisterActivity, MainActivity::class.java)
-                            intentGo.flags =
-                                Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_CLEAR_TASK
-                            startActivity(intentGo)
-                            finishAffinity()
-                        }
-                        .addOnFailureListener {
-                            return@addOnFailureListener
-                        }
                 }.await()
             }
         }

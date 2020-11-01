@@ -14,6 +14,7 @@
     <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
 
 
     <application
@@ -33,7 +34,13 @@
         <activity android:name="dodoz.cs.rmutt.canteenwallet.PayQrcode.PayQrcodeCheckActivity" />
         <activity android:name="dodoz.cs.rmutt.canteenwallet.Transfer.TransferConfirmActivity" />
         <activity android:name="dodoz.cs.rmutt.canteenwallet.PayQrcode.PayQrcodeActivity" />
-        <activity android:name="dodoz.cs.rmutt.canteenwallet.Transfer.TransferActivity" />
+        <activity android:name="dodoz.cs.rmutt.canteenwallet.Transfer.TransferActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity android:name="dodoz.cs.rmutt.canteenwallet.Login.RegisterActivity" />
         <activity android:name="dodoz.cs.rmutt.canteenwallet.MainActivity">
 
@@ -41,11 +48,11 @@
         <activity android:name="dodoz.cs.rmutt.canteenwallet.Login.VerifyActivity" />
         <activity android:name="dodoz.cs.rmutt.canteenwallet.Login.LoginActivity" />
         <activity android:name="dodoz.cs.rmutt.canteenwallet.SplashActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.MAIN" />-->
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+<!--                <category android:name="android.intent.category.LAUNCHER" />-->
+<!--            </intent-filter>-->
         </activity>
     </application>
 
