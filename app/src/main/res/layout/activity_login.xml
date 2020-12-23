@@ -32,15 +32,29 @@
                 android:layout_height="200dp"
                 android:src="@drawable/rmutt" />
 
-            <TextView
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp">
+
+            <EditText
+                android:id="@+id/edtid"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
-                android:gravity="center_horizontal"
-                android:text="กรุณากรอกเบอร์โทรศัพท์เพื่อรับ OTP"
-                android:textColor="@color/white"
-                android:textSize="18dp"
-                android:textStyle="bold" />
+                android:layout_height="50dp"
+                android:layout_marginHorizontal="40dp"
+                android:background="@drawable/frametext"
+                android:drawablePadding="10dp"
+                android:hint="ชื่อผู้ใช้"
+                android:paddingLeft="25dp"
+                android:textColorHint="@color/Rmutt"
+                android:textCursorDrawable="@drawable/color_cursor"
+                android:textStyle="bold"
+                android:textColor="@color/Rmutt"
+                android:drawableLeft="@drawable/ic_user"
+                />
+
 
         </LinearLayout>
 
@@ -50,34 +64,45 @@
             android:layout_marginTop="30dp">
 
             <EditText
-                android:id="@+id/phonenumber"
+                android:id="@+id/edtpass"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginHorizontal="40dp"
                 android:background="@drawable/frametext"
-                android:digits="0123456789"
                 android:drawablePadding="10dp"
-                android:hint="เบอร์โทรศัพท์"
-                android:inputType="phone"
-                android:maxLength="10"
-                android:text=""
-                android:padding="8dp"
+                android:hint="รหัสผ่าน"
+                android:paddingLeft="25dp"
+                android:inputType="textPassword"
                 android:textColorHint="@color/Rmutt"
                 android:textCursorDrawable="@drawable/color_cursor"
                 android:textStyle="bold"
                 android:textColor="@color/Rmutt"
-                android:drawableLeft="@drawable/ic_phone" />
+                android:drawableLeft="@drawable/ic_padlock"
+                />
+
 
         </LinearLayout>
 
         <Button
-            android:id="@+id/btnconotp"
+            android:id="@+id/btnlogin"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginHorizontal="40dp"
             android:layout_marginTop="30dp"
             android:background="@drawable/btnlogin"
-            android:text="ขอรหัส OTP"
+            android:text="เข้าสู่ระบบ"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/btnregis"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginHorizontal="40dp"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/btnlogin"
+            android:text="สมัครสมาชิก"
             android:textColor="@color/white"
             android:textSize="16sp"
             android:textStyle="bold" />

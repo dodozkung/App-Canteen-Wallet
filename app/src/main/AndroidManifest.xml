@@ -35,18 +35,23 @@
         <activity android:name="dodoz.cs.rmutt.canteenwallet.Transfer.TransferConfirmActivity" />
         <activity android:name="dodoz.cs.rmutt.canteenwallet.PayQrcode.PayQrcodeActivity" />
         <activity android:name="dodoz.cs.rmutt.canteenwallet.Transfer.TransferActivity">
+
+        </activity>
+        <activity android:name="dodoz.cs.rmutt.canteenwallet.Login.RegisterActivity">
+
+        </activity>
+        <activity android:name="dodoz.cs.rmutt.canteenwallet.MainActivity">
+
+
+        </activity>
+<!--        <activity android:name="dodoz.cs.rmutt.canteenwallet.Login.VerifyActivity" />-->
+        <activity android:name="dodoz.cs.rmutt.canteenwallet.Login.LoginActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="dodoz.cs.rmutt.canteenwallet.Login.RegisterActivity" />
-        <activity android:name="dodoz.cs.rmutt.canteenwallet.MainActivity">
-
-        </activity>
-        <activity android:name="dodoz.cs.rmutt.canteenwallet.Login.VerifyActivity" />
-        <activity android:name="dodoz.cs.rmutt.canteenwallet.Login.LoginActivity" />
         <activity android:name="dodoz.cs.rmutt.canteenwallet.SplashActivity">
 <!--            <intent-filter>-->
 <!--                <action android:name="android.intent.action.MAIN" />-->

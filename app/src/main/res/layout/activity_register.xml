@@ -28,46 +28,46 @@
                 android:layout_marginBottom="20dp"
                 android:gravity="center">
 
-                <RelativeLayout
-                    android:layout_width="100dp"
-                    android:layout_height="100dp">
+<!--                <RelativeLayout-->
+<!--                    android:layout_width="100dp"-->
+<!--                    android:layout_height="100dp">-->
 
-                    <de.hdodenhof.circleimageview.CircleImageView
-                        android:id="@+id/Profileinfo"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_gravity="center"
-                        android:background="@drawable/ic_profile"
-                        app:civ_border_color="@color/Sky"
-                        app:civ_border_width="2dp" />
+<!--                    <de.hdodenhof.circleimageview.CircleImageView-->
+<!--                        android:id="@+id/Profileinfo"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="match_parent"-->
+<!--                        android:layout_gravity="center"-->
+<!--                        android:background="@drawable/ic_profile"-->
+<!--                        app:civ_border_color="@color/Sky"-->
+<!--                        app:civ_border_width="2dp" />-->
 
-                    <RelativeLayout
-                        android:id="@+id/uploadphoto"
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:layout_alignParentRight="true"
-                        android:layout_alignParentBottom="true">
-                        <ImageView
+<!--                    <RelativeLayout-->
+<!--                        android:id="@+id/uploadphoto"-->
+<!--                        android:layout_width="30dp"-->
+<!--                        android:layout_height="30dp"-->
+<!--                        android:layout_alignParentRight="true"-->
+<!--                        android:layout_alignParentBottom="true">-->
+<!--                        <ImageView-->
 
-                            android:layout_width="30dp"
-                            android:layout_height="30dp"
-                            android:layout_alignParentRight="true"
-                            android:layout_alignParentBottom="true"
-                            android:layout_marginRight="0dp"
-                            android:layout_marginBottom="0dp"
-                            android:src="@drawable/bgcamera" />
+<!--                            android:layout_width="30dp"-->
+<!--                            android:layout_height="30dp"-->
+<!--                            android:layout_alignParentRight="true"-->
+<!--                            android:layout_alignParentBottom="true"-->
+<!--                            android:layout_marginRight="0dp"-->
+<!--                            android:layout_marginBottom="0dp"-->
+<!--                            android:src="@drawable/bgcamera" />-->
 
-                        <ImageView
-                            android:layout_width="17dp"
-                            android:layout_height="17dp"
-                            android:layout_alignParentRight="true"
-                            android:layout_alignParentBottom="true"
-                            android:layout_marginRight="7dp"
-                            android:layout_marginBottom="7dp"
-                            android:background="@drawable/ic_ar_camera" />
-                    </RelativeLayout>
+<!--                        <ImageView-->
+<!--                            android:layout_width="17dp"-->
+<!--                            android:layout_height="17dp"-->
+<!--                            android:layout_alignParentRight="true"-->
+<!--                            android:layout_alignParentBottom="true"-->
+<!--                            android:layout_marginRight="7dp"-->
+<!--                            android:layout_marginBottom="7dp"-->
+<!--                            android:background="@drawable/ic_ar_camera" />-->
+<!--                    </RelativeLayout>-->
 
-                </RelativeLayout>
+<!--                </RelativeLayout>-->
             </LinearLayout>
 
             <LinearLayout
@@ -117,6 +117,31 @@
                         android:textColor="@color/white"/>
 
                 </RadioGroup>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp">
+
+                <EditText
+                    android:id="@+id/edtidcard"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="40dp"
+                    android:layout_marginRight="40dp"
+                    android:background="@drawable/frametext"
+                    android:drawableStart="@drawable/ic_id_card"
+                    android:drawableLeft="@drawable/ic_id_card"
+                    android:drawablePadding="15dp"
+                    android:gravity="center_vertical"
+                    android:hint="รหัสนักศึกษา(มีขีด)"
+                    android:textColorHint="@color/Rmutt"
+                    android:inputType="text"
+                    android:padding="10dp"
+                    android:textSize="16dp"
+                    android:textColor="@color/Rmutt"/>
 
 
             </LinearLayout>
@@ -186,14 +211,15 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="40dp"
                     android:layout_marginRight="40dp"
+                    android:hint="เบอร์โทรศัพท์"
+                    android:textColorHint="@color/Rmutt"
                     android:background="@drawable/frametext"
                     android:digits="0123456789"
+                    app:counterMaxLength="10"
                     android:drawableStart="@drawable/ic_phone"
                     android:drawableLeft="@drawable/ic_phone"
                     android:drawablePadding="15dp"
                     android:gravity="center_vertical"
-                    android:editable="false"
-                    android:focusable="false"
                     android:inputType="phone"
                     android:maxLength="10"
                     android:padding="10dp"
@@ -233,25 +259,50 @@
                 android:layout_marginBottom="20dp">
 
                 <EditText
-                    android:id="@+id/edtidcard"
+                    android:id="@+id/edtpass"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="40dp"
                     android:layout_marginRight="40dp"
                     android:background="@drawable/frametext"
-                    android:drawableStart="@drawable/ic_id_card"
-                    android:drawableLeft="@drawable/ic_id_card"
+                    android:drawableStart="@drawable/ic_padlock"
+                    android:drawableLeft="@drawable/ic_padlock"
                     android:drawablePadding="15dp"
                     android:gravity="center_vertical"
-                    android:hint="รหัสนักศึกษา(มีขีด)"
+                    android:hint="รหัสผ่าน"
                     android:textColorHint="@color/Rmutt"
-                    android:inputType="textEmailAddress"
+                    android:inputType="textPassword"
                     android:padding="10dp"
                     android:textSize="16dp"
                     android:textColor="@color/Rmutt"/>
 
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp">
+
+                <EditText
+                    android:id="@+id/edtconpass"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="40dp"
+                    android:layout_marginRight="40dp"
+                    android:background="@drawable/frametext"
+                    android:drawableStart="@drawable/ic_padlock"
+                    android:drawableLeft="@drawable/ic_padlock"
+                    android:drawablePadding="15dp"
+                    android:gravity="center_vertical"
+                    android:hint="ยืนยันรหัสผ่าน"
+                    android:textColorHint="@color/Rmutt"
+                    android:inputType="textPassword"
+                    android:padding="10dp"
+                    android:textSize="16dp"
+                    android:textColor="@color/Rmutt"/>
 
             </LinearLayout>
+
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -274,6 +325,8 @@
                     android:inputType="textEmailAddress"
                     android:padding="10dp"
                     android:textSize="16dp"
+                    android:digits="0123456789"
+                    app:counterMaxLength="6"
                     android:textColor="@color/Rmutt"/>
 
             </LinearLayout>

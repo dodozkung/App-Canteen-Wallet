@@ -24,8 +24,8 @@ abstract class BaseActivity : AppCompatActivity()
     , BaseMVPView {
 
     private lateinit var progressDialog: ProgressBarUtils
-    private val REQUEST_LOCATION = 199
-    private val REQUEST_CODE_FLEXI_UPDATE = 8888
+//    private val REQUEST_LOCATION = 199
+//    private val REQUEST_CODE_FLEXI_UPDATE = 8888
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
