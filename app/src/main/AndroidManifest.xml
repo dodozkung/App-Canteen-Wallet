@@ -12,52 +12,50 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.CALL_PHONE" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:allowBackup="true"
         android:icon="@drawable/rmutt"
         android:label="RMUTT Canteen Wallet"
-    tools:replace="android:label"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme.NoActionBar">
-
-        <activity android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
-            android:theme="@style/Base.Theme.AppCompat"/>
-
-
-        <activity android:name="dodoz.cs.rmutt.canteenwallet.PayQrcode.PayQrcodeConfirmActivity"></activity>
-        <activity android:name="dodoz.cs.rmutt.canteenwallet.PayQrcode.PayQrcodeCheckActivity" />
-        <activity android:name="dodoz.cs.rmutt.canteenwallet.Transfer.TransferConfirmActivity" />
-        <activity android:name="dodoz.cs.rmutt.canteenwallet.PayQrcode.PayQrcodeActivity" />
-        <activity android:name="dodoz.cs.rmutt.canteenwallet.Transfer.TransferActivity">
-
-        </activity>
-        <activity android:name="dodoz.cs.rmutt.canteenwallet.Login.RegisterActivity">
-
-        </activity>
-        <activity android:name="dodoz.cs.rmutt.canteenwallet.MainActivity">
-
-
-        </activity>
-<!--        <activity android:name="dodoz.cs.rmutt.canteenwallet.Login.VerifyActivity" />-->
-        <activity android:name="dodoz.cs.rmutt.canteenwallet.Login.LoginActivity" >
+        android:theme="@style/AppTheme.NoActionBar"
+        tools:replace="android:label">
+        <activity android:name=".PinActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="dodoz.cs.rmutt.canteenwallet.SplashActivity">
-<!--            <intent-filter>-->
-<!--                <action android:name="android.intent.action.MAIN" />-->
+        <activity
+            android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
+            android:theme="@style/Base.Theme.AppCompat" />
+        <activity android:name=".PayQrcode.PayQrcodeConfirmActivity" />
+        <activity android:name=".PayQrcode.PayQrcodeCheckActivity" />
+        <activity android:name=".Transfer.TransferConfirmActivity" />
+        <activity android:name=".PayQrcode.PayQrcodeActivity" />
+        <activity android:name=".Transfer.TransferActivity"></activity>
+        <activity android:name=".Login.RegisterActivity"></activity>
+        <activity android:name=".MainActivity"></activity> <!-- <activity android:name="dodoz.cs.rmutt.canteenwallet.Login.VerifyActivity" /> -->
+        <activity android:name=".Login.LoginActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
-<!--                <category android:name="android.intent.category.LAUNCHER" />-->
-<!--            </intent-filter>-->
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".SplashActivity">
+
+            <!-- <intent-filter> -->
+            <!-- <action android:name="android.intent.action.MAIN" /> -->
+
+
+            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
+            <!-- </intent-filter> -->
         </activity>
     </application>
 
