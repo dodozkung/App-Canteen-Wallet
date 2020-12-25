@@ -53,82 +53,78 @@ class RegisterActivity : BaseActivity() {
 //        }
 
         btnconprofile.setOnClickListener {
-//            val name = edtname.text.toString().trim()
-//            val idcard = edtidcard.text.toString().trim()
-//            val email = edtemail.text.toString().trim()
-//            val phone = edtphone.text.toString().trim()
-//            val birthday = birthday.text.toString().trim()
-////            val money = "0"
-//            val password = edtpass.text.toString().trim()
-//            val conpassword = edtconpass.text.toString().trim()
-//            val pw = edtpw.text.toString().trim()
+            val name = edtname.text.toString().trim()
+            val idcard = edtidcard.text.toString().trim()
+            val username = edtusername.text.toString().trim()
+            val phone = edtphone.text.toString().trim()
+            val address = edtaddress.text.toString().trim()
+            val password = edtpass.text.toString().trim()
+            val conpassword = edtconpass.text.toString().trim()
+            val pw = edtpw.text.toString().trim()
 
-            register(
-                edtidcard.text.toString(),
-                edtname.text.toString(),
-                edtaddress.text.toString(),
-                edtphone.text.toString(),
-                edtusername.text.toString(),
-                edtpass.text.toString(),
-                edtpw.text.toString())
 
-//            if (getSex == null) {
-//                Toast.makeText(this, "กรุณาระบุเพศ", Toast.LENGTH_SHORT).show()
-//                return@setOnClickListener
-//            } else if (idcard.isEmpty()) {
-//                edtidcard.error = "กรุณากรอกรหัสนักศึกษา"
-//
-//                return@setOnClickListener
-//            } else if (name.isEmpty()) {
-//                edtname.error = "กรุณากรอกชื่อ - นามสกุล"
-//                Log.d("AAAA", "0")
-//                return@setOnClickListener
-//            } else if (birthday.isEmpty()) {
-//                Toast.makeText(this, "กรุณาระบุวันเกิด", Toast.LENGTH_SHORT).show()
-//                return@setOnClickListener
-//            } else if (phone.isEmpty() || phone.length < 6) {
-//                edtphone.error = "กรุณากรอกเบอร์โทรศัพท์"
-//
-//                return@setOnClickListener
-//            }  else if (email.isEmpty()) {
-//                edtemail.error = "กรุณากรอกอีเมล"
-//
-//                return@setOnClickListener
-//            } else if (password.isEmpty() || password.length <=6) {
-//                edtpass.error = "กรุณากรอกรหัสผ่านมากกว่า 5 ตัว"
-//
-//                return@setOnClickListener
-//            } else if (conpassword.isEmpty() || conpassword.length <=6) {
-//                edtconpass.error = "กรุณากรอกรหัสผ่านมากกว่า 5 ตัว"
-//
-//                return@setOnClickListener
-//            } else if (!conpassword.equals(password)) {
-//                edtconpass.error = "รหัสผ่านไม่ตรงกัน"
-//
-//                return@setOnClickListener
-//            } else if (pw.isEmpty() || pw.length == 6) {
-//                edtpw.error = "กรุณากรอกรหัสธุรกรรม 6 ตัว"
-//
-//                return@setOnClickListener
-//            } else {
-//                val intent = Intent(this,LoginActivity::class.java)
-//                startActivity(intent)
-//            }
+
+
+
+
+            if (username.isEmpty()) {
+                 edtusername.error = "กรุณากรอกชื่อผู้ใช้"
+                return@setOnClickListener
+            } else if (password.isEmpty() || password.length <=6) {
+                edtpass.error = "กรุณากรอกรหัสผ่านมากกว่า 5 ตัว"
+
+                return@setOnClickListener
+            } else if (conpassword.isEmpty() || conpassword.length <=6) {
+                edtconpass.error = "กรุณากรอกรหัสผ่านมากกว่า 5 ตัว"
+
+                return@setOnClickListener
+            } else if (!conpassword.equals(password)) {
+                edtconpass.error = "รหัสผ่านไม่ตรงกัน"
+
+                return@setOnClickListener
+            }  else if (name.isEmpty()) {
+                edtname.error = "กรุณากรอกชื่อ - นามสกุล"
+                return@setOnClickListener
+            }  else if (address.isEmpty()) {
+                edtaddress.error = "กรุณากรอกรหัสนักศึกษา"
+
+                return@setOnClickListener
+            }   else if (idcard.isEmpty()) {
+                edtidcard.error = "กรุณากรอกรหัสนักศึกษา"
+
+                return@setOnClickListener
+            }       else if (pw.isEmpty() || pw.length == 6) {
+                edtpw.error = "กรุณากรอกรหัสธุรกรรม 6 ตัว"
+
+                return@setOnClickListener
+            }   else if (phone.isEmpty() || phone.length <9) {
+                edtphone.error = "กรุณากรอกเบอร์โทรศัพท์"
+
+                return@setOnClickListener
+            }   else {
+                register(edtusername.text.toString(),
+                    edtpass.text.toString(),
+                    edtname.text.toString(),
+                    edtaddress.text.toString(),
+                    edtidcard.text.toString(),
+                    edtpw.text.toString(),
+                    edtphone.text.toString())
+            }
             }
 
 
         }
 
     private fun register (
-        wallet_id: String,
-        name: String,
+        username : String,
         password: String,
+        name: String,
         adddress: String,
-        phone : String,
-        passcf : String,
-        username : String
+        idcard: String,
+        passconfirm : String,
+        phone : String
     ){
-        compositeDisposable.add(myAPI.register(wallet_id,name,adddress,phone,username,password,passcf)
+        compositeDisposable.add(myAPI.register(username,password,name,adddress,idcard,passconfirm,phone)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe { message ->

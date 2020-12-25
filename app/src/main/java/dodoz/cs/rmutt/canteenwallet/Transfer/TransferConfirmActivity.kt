@@ -3,6 +3,7 @@ package dodoz.cs.rmutt.canteenwallet.Transfer
 import android.content.Intent
 import android.os.Bundle
 import dodoz.cs.rmutt.canteenwallet.BaseActivity
+import dodoz.cs.rmutt.canteenwallet.PinActivity
 import dodoz.cs.rmutt.canteenwallet.R
 import kotlinx.android.synthetic.main.activity_transfer_confirm.*
 
@@ -16,8 +17,9 @@ class TransferConfirmActivity : BaseActivity() {
             startActivity(intent)
         }
 
-//        checktransfer!!.setOnClickListener {
-//            val intent = Intent(this,)
-//        }
+        checktransfer!!.setOnClickListener {
+            val intent = Intent(this,PinActivity::class.java)
+            startActivity(intent)
+        }
     }
 }

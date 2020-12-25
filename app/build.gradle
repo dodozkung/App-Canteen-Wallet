@@ -52,6 +52,7 @@ dependencies {
     implementation 'com.android.support:multidex:1.0.3'
     //pin
     implementation 'com.chaos.view:pinview:1.4.4'
+    implementation 'com.github.GoodieBag:Pinview:v1.4'
     //loading
     implementation 'com.github.ybq:Android-SpinKit:1.4.0'
     //profile
@@ -59,6 +60,7 @@ dependencies {
     //qrcode
     implementation 'me.dm7.barcodescanner:zxing:1.9.13'
     implementation 'me.dm7.barcodescanner:zbar:1.9.13'
+    implementation 'com.journeyapps:zxing-android-embedded:3.4.0'
     //MakeEdittext
     implementation 'ru.egslava:MaskedEditText:1.0.5'
     //CropImage
@@ -87,6 +89,8 @@ dependencies {
 
     //Material EditText
     implementation 'com.rengwuxian.materialedittext:library:2.1.4'
+
+    implementation 'com.konaire.numeric-keyboard:numeric-keyboard:1.1.0'
 
 //    //Material Button
 //    implementation 'com.github.material-components:material-components-android:1.0.0'

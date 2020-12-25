@@ -30,7 +30,7 @@ class LoginActivity : BaseActivity() {
         //Init API
         val retrofit = RetrofitClient.instance
         myAPI = retrofit.create(INodeJS::class.java)
-        var token = getSharedPreferences("salt",Context.MODE_PRIVATE)
+
 
 
 

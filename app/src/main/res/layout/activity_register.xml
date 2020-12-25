@@ -126,163 +126,6 @@
                 android:layout_marginBottom="20dp">
 
                 <EditText
-                    android:id="@+id/edtidcard"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="40dp"
-                    android:layout_marginRight="40dp"
-                    android:background="@drawable/frametext"
-                    android:drawableStart="@drawable/ic_id_card"
-                    android:drawableLeft="@drawable/ic_id_card"
-                    android:drawablePadding="15dp"
-                    android:gravity="center_vertical"
-                    android:hint="รหัสนักศึกษา(มีขีด)"
-                    android:textColorHint="@color/Rmutt"
-                    android:inputType="text"
-                    android:padding="10dp"
-                    android:textSize="16dp"
-                    android:textColor="@color/Rmutt"/>
-
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp"
-                android:weightSum="10">
-
-                <EditText
-                    android:id="@+id/edtname"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="40dp"
-                    android:layout_marginRight="40dp"
-                    android:background="@drawable/frametext"
-                    android:drawableLeft="@drawable/ic_user"
-                    android:drawablePadding="15dp"
-                    android:gravity="center_vertical"
-                    android:hint="ชื่อ - สกุล"
-                    android:textColorHint="@color/Rmutt"
-                    android:inputType="text"
-                    android:padding="10dp"
-                    android:textColor="@color/Rmutt"/>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp"
-                android:weightSum="10">
-
-                <EditText
-                    android:id="@+id/edtaddress"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="40dp"
-                    android:layout_marginRight="40dp"
-                    android:background="@drawable/frametext"
-                    android:drawableLeft="@drawable/ic_address"
-                    android:drawablePadding="15dp"
-                    android:gravity="center_vertical"
-                    android:hint="ที่อยู่"
-                    android:textColorHint="@color/Rmutt"
-                    android:inputType="text"
-                    android:padding="10dp"
-                    android:textColor="@color/Rmutt"/>
-
-            </LinearLayout>
-
-
-
-
-
-<!--            <LinearLayout-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_marginBottom="20dp">-->
-
-<!--                <EditText-->
-<!--                    android:id="@+id/birthday"-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:layout_marginLeft="40dp"-->
-<!--                    android:layout_marginRight="40dp"-->
-<!--                    android:background="@drawable/frametext"-->
-<!--                    android:clickable="true"-->
-<!--                    android:drawableStart="@drawable/ic_birthday"-->
-<!--                    android:drawableLeft="@drawable/ic_birthday"-->
-<!--                    android:drawablePadding="15dp"-->
-<!--                    android:editable="false"-->
-<!--                    android:focusable="false"-->
-<!--                    android:hint="วันเกิด"-->
-<!--                    android:textColorHint="@color/Rmutt"-->
-<!--                    android:padding="10dp"-->
-<!--                    android:textColor="@color/Rmutt"/>-->
-
-
-<!--            </LinearLayout>-->
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp">
-
-                <EditText
-                    android:id="@+id/edtphone"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="40dp"
-                    android:layout_marginRight="40dp"
-                    android:hint="เบอร์โทรศัพท์"
-                    android:textColorHint="@color/Rmutt"
-                    android:background="@drawable/frametext"
-                    android:digits="0123456789"
-                    app:counterMaxLength="10"
-                    android:drawableStart="@drawable/ic_phone"
-                    android:drawableLeft="@drawable/ic_phone"
-                    android:drawablePadding="15dp"
-                    android:gravity="center_vertical"
-                    android:inputType="phone"
-                    android:maxLength="10"
-                    android:padding="10dp"
-                    android:textSize="16dp"
-                    android:textColor="@color/Rmutt"/>
-
-            </LinearLayout>
-
-<!--            <LinearLayout-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_marginBottom="20dp">-->
-
-<!--                <EditText-->
-<!--                    android:id="@+id/edtemail"-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:layout_marginLeft="40dp"-->
-<!--                    android:layout_marginRight="40dp"-->
-<!--                    android:background="@drawable/frametext"-->
-<!--                    android:drawableStart="@drawable/ic_mail"-->
-<!--                    android:drawableLeft="@drawable/ic_mail"-->
-<!--                    android:drawablePadding="15dp"-->
-<!--                    android:gravity="center_vertical"-->
-<!--                    android:hint="อีเมล"-->
-<!--                    android:textColorHint="@color/Rmutt"-->
-<!--                    android:inputType="textEmailAddress"-->
-<!--                    android:padding="10dp"-->
-<!--                    android:textSize="16dp"-->
-<!--                    android:textColor="@color/Rmutt"/>-->
-
-<!--            </LinearLayout>-->
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp">
-
-                <EditText
                     android:id="@+id/edtusername"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -352,6 +195,144 @@
 
             </LinearLayout>
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:weightSum="10">
+
+                <EditText
+                    android:id="@+id/edtname"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="40dp"
+                    android:layout_marginRight="40dp"
+                    android:background="@drawable/frametext"
+                    android:drawableLeft="@drawable/ic_user"
+                    android:drawablePadding="15dp"
+                    android:gravity="center_vertical"
+                    android:hint="ชื่อ - สกุล"
+                    android:textColorHint="@color/Rmutt"
+                    android:inputType="text"
+                    android:padding="10dp"
+                    android:textColor="@color/Rmutt"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:weightSum="10">
+
+                <EditText
+                    android:id="@+id/edtaddress"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="40dp"
+                    android:layout_marginRight="40dp"
+                    android:background="@drawable/frametext"
+                    android:drawableLeft="@drawable/ic_address"
+                    android:drawablePadding="15dp"
+                    android:gravity="center_vertical"
+                    android:hint="ที่อยู่"
+                    android:textColorHint="@color/Rmutt"
+                    android:inputType="text"
+                    android:padding="10dp"
+                    android:textColor="@color/Rmutt"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp">
+
+                <EditText
+                    android:id="@+id/edtidcard"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="40dp"
+                    android:layout_marginRight="40dp"
+                    android:background="@drawable/frametext"
+                    android:drawableStart="@drawable/ic_id_card"
+                    android:drawableLeft="@drawable/ic_id_card"
+                    android:drawablePadding="15dp"
+                    android:gravity="center_vertical"
+                    android:hint="รหัสนักศึกษา(มีขีด)"
+                    android:textColorHint="@color/Rmutt"
+                    android:inputType="text"
+                    android:padding="10dp"
+                    android:textSize="16dp"
+                    android:textColor="@color/Rmutt"/>
+
+
+            </LinearLayout>
+
+
+
+
+
+
+
+
+<!--            <LinearLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginBottom="20dp">-->
+
+<!--                <EditText-->
+<!--                    android:id="@+id/birthday"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginLeft="40dp"-->
+<!--                    android:layout_marginRight="40dp"-->
+<!--                    android:background="@drawable/frametext"-->
+<!--                    android:clickable="true"-->
+<!--                    android:drawableStart="@drawable/ic_birthday"-->
+<!--                    android:drawableLeft="@drawable/ic_birthday"-->
+<!--                    android:drawablePadding="15dp"-->
+<!--                    android:editable="false"-->
+<!--                    android:focusable="false"-->
+<!--                    android:hint="วันเกิด"-->
+<!--                    android:textColorHint="@color/Rmutt"-->
+<!--                    android:padding="10dp"-->
+<!--                    android:textColor="@color/Rmutt"/>-->
+
+
+<!--            </LinearLayout>-->
+
+
+
+<!--            <LinearLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginBottom="20dp">-->
+
+<!--                <EditText-->
+<!--                    android:id="@+id/edtemail"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginLeft="40dp"-->
+<!--                    android:layout_marginRight="40dp"-->
+<!--                    android:background="@drawable/frametext"-->
+<!--                    android:drawableStart="@drawable/ic_mail"-->
+<!--                    android:drawableLeft="@drawable/ic_mail"-->
+<!--                    android:drawablePadding="15dp"-->
+<!--                    android:gravity="center_vertical"-->
+<!--                    android:hint="อีเมล"-->
+<!--                    android:textColorHint="@color/Rmutt"-->
+<!--                    android:inputType="textEmailAddress"-->
+<!--                    android:padding="10dp"-->
+<!--                    android:textSize="16dp"-->
+<!--                    android:textColor="@color/Rmutt"/>-->
+
+<!--            </LinearLayout>-->
+
+
+
+
+
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -376,6 +357,34 @@
                     android:textSize="16dp"
                     android:digits="0123456789"
                     app:counterMaxLength="6"
+                    android:textColor="@color/Rmutt"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp">
+
+                <EditText
+                    android:id="@+id/edtphone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="40dp"
+                    android:layout_marginRight="40dp"
+                    android:hint="เบอร์โทรศัพท์"
+                    android:textColorHint="@color/Rmutt"
+                    android:background="@drawable/frametext"
+                    android:digits="0123456789"
+                    app:counterMaxLength="10"
+                    android:drawableStart="@drawable/ic_phone"
+                    android:drawableLeft="@drawable/ic_phone"
+                    android:drawablePadding="15dp"
+                    android:gravity="center_vertical"
+                    android:inputType="phone"
+                    android:maxLength="10"
+                    android:padding="10dp"
+                    android:textSize="16dp"
                     android:textColor="@color/Rmutt"/>
 
             </LinearLayout>

@@ -10,13 +10,13 @@ interface INodeJS {
     @POST("register")
     @FormUrlEncoded
     fun register(
-        @Field("email") email: String,
-        @Field("name") name: String,
         @Field("username") username: String,
+        @Field("password") password: String,
+        @Field("name") name: String,
+        @Field("idcard") idcard: String,
         @Field("address") address: String,
+        @Field("passconfirm") passconfirm: String,
         @Field("phone") phone: String,
-        @Field("balance") balance: String,
-        @Field("passcf") passcf: String
     ):Observable<String>
 
 
