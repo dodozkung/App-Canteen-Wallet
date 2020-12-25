@@ -1,5 +1,6 @@
 package dodoz.cs.rmutt.canteenwallet.Login
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
@@ -9,7 +10,6 @@ import dodoz.cs.rmutt.canteenwallet.MainActivity
 import dodoz.cs.rmutt.canteenwallet.R
 import dodoz.cs.rmutt.canteenwallet.Retrofit.INodeJS
 import dodoz.cs.rmutt.canteenwallet.Retrofit.RetrofitClient
-import io.reactivex.Scheduler
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
@@ -30,13 +30,14 @@ class LoginActivity : BaseActivity() {
         //Init API
         val retrofit = RetrofitClient.instance
         myAPI = retrofit.create(INodeJS::class.java)
-
+        var token = getSharedPreferences("salt",Context.MODE_PRIVATE)
 
 
 
         btnlogin.setOnClickListener {
             val username = edtid.text.toString().trim()
             val password = edtpass.text.toString().trim()
+
 
             if (username.isEmpty()) {
                 edtid.error = "กรุณากรอกชื่อผู้ใช้งาน"
@@ -48,6 +49,7 @@ class LoginActivity : BaseActivity() {
                 return@setOnClickListener
             }else
             login(edtid.text.toString(),edtpass.text.toString())
+
         }
 
         btnregis.setOnClickListener {
@@ -57,6 +59,7 @@ class LoginActivity : BaseActivity() {
 
 
     }
+
 
     private fun login (username: String,password:String){
         compositeDisposable.add(myAPI.login(username,password)
