@@ -1,34 +1,18 @@
 package dodoz.cs.rmutt.canteenwallet.Login
 
-import android.app.Activity
-import android.app.DatePickerDialog
 import android.content.Intent
-import android.graphics.Bitmap
-import android.net.Uri
 import android.os.Bundle
 import android.os.Handler
-import android.provider.MediaStore
-import android.util.Log
 import android.widget.Toast
 
-import com.jakewharton.threetenabp.AndroidThreeTen
-import com.theartofdev.edmodo.cropper.CropImage
-import com.theartofdev.edmodo.cropper.CropImageView
 import dodoz.cs.rmutt.canteenwallet.*
 import dodoz.cs.rmutt.canteenwallet.Retrofit.INodeJS
 import dodoz.cs.rmutt.canteenwallet.Retrofit.RetrofitClient
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
-import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.activity_register.*
 import kotlinx.android.synthetic.main.activity_register.edtpass
-import kotlinx.coroutines.async
-import kotlinx.coroutines.runBlocking
-import java.io.ByteArrayOutputStream
-import java.io.IOException
-import java.lang.Exception
-import java.text.SimpleDateFormat
 import java.util.*
 
 class RegisterActivity : BaseActivity() {
@@ -50,23 +34,23 @@ class RegisterActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
 
-        init()
+//        init()
 
         //Init API
         val retrofit = RetrofitClient.instance
         myAPI = retrofit.create(INodeJS::class.java)
 
 
-        rg_gender.setOnCheckedChangeListener { group, checkedId ->
-            when (checkedId) {
-                R.id.rb_male -> {
-                    getSex = getString(R.string.male)
-                }
-                R.id.rb_female -> {
-                    getSex = getString(R.string.female)
-                }
-            }
-        }
+//        rg_gender.setOnCheckedChangeListener { group, checkedId ->
+//            when (checkedId) {
+//                R.id.rb_male -> {
+//                    getSex = getString(R.string.male)
+//                }
+//                R.id.rb_female -> {
+//                    getSex = getString(R.string.female)
+//                }
+//            }
+//        }
 
         btnconprofile.setOnClickListener {
 //            val name = edtname.text.toString().trim()
@@ -79,7 +63,14 @@ class RegisterActivity : BaseActivity() {
 //            val conpassword = edtconpass.text.toString().trim()
 //            val pw = edtpw.text.toString().trim()
 
-            register(edtemail.text.toString(),edtname.text.toString(),edtpass.text.toString())
+            register(
+                edtidcard.text.toString(),
+                edtname.text.toString(),
+                edtaddress.text.toString(),
+                edtphone.text.toString(),
+                edtusername.text.toString(),
+                edtpass.text.toString(),
+                edtpw.text.toString())
 
 //            if (getSex == null) {
 //                Toast.makeText(this, "กรุณาระบุเพศ", Toast.LENGTH_SHORT).show()
@@ -128,8 +119,16 @@ class RegisterActivity : BaseActivity() {
 
         }
 
-    private fun register (email: String,name: String,password:String){
-        compositeDisposable.add(myAPI.register(email,name,password)
+    private fun register (
+        wallet_id: String,
+        name: String,
+        password: String,
+        adddress: String,
+        phone : String,
+        passcf : String,
+        username : String
+    ){
+        compositeDisposable.add(myAPI.register(wallet_id,name,adddress,phone,username,password,passcf)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe { message ->
@@ -155,42 +154,42 @@ class RegisterActivity : BaseActivity() {
     }
 
 
-    private fun init() {
-//        loadPhoneNumber()
-        birthday!!.setOnClickListener {
-            val mDateSetListener: DatePickerDialog.OnDateSetListener =
-                DatePickerDialog.OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
-                    myCalendar.set(Calendar.YEAR, year)
-                    myCalendar.set(Calendar.MONTH, monthOfYear)
-                    myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth)
-                    updateLabel()
-                }
-            val d = DatePickerDialog(
-                this,
-                R.style.DialogTheme,
-                mDateSetListener,
-                myCalendar.get(Calendar.YEAR),
-                myCalendar.get(Calendar.MONTH),
-                myCalendar.get(Calendar.DAY_OF_MONTH)
-            )
-            d.show()
-        }
-
-        AndroidThreeTen.init(this)
-    }
-
-
-
-    private fun updateLabel() {
-        val myFormat = "yyyy-MM-dd"
-        val sdf = SimpleDateFormat(myFormat, Locale.US)
-        val myFormatshow = "dd/MM/yyyy"
-        val sdfShow = SimpleDateFormat(myFormatshow, Locale.US)
-        dateTime = sdf.format(myCalendar.time)
-
-        birthday!!.setText(sdfShow.format(myCalendar.time))
-
-    }
+//    private fun init() {
+////        loadPhoneNumber()
+//        birthday!!.setOnClickListener {
+//            val mDateSetListener: DatePickerDialog.OnDateSetListener =
+//                DatePickerDialog.OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
+//                    myCalendar.set(Calendar.YEAR, year)
+//                    myCalendar.set(Calendar.MONTH, monthOfYear)
+//                    myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth)
+//                    updateLabel()
+//                }
+//            val d = DatePickerDialog(
+//                this,
+//                R.style.DialogTheme,
+//                mDateSetListener,
+//                myCalendar.get(Calendar.YEAR),
+//                myCalendar.get(Calendar.MONTH),
+//                myCalendar.get(Calendar.DAY_OF_MONTH)
+//            )
+//            d.show()
+//        }
+//
+//        AndroidThreeTen.init(this)
+//    }
+//
+//
+//
+//    private fun updateLabel() {
+//        val myFormat = "yyyy-MM-dd"
+//        val sdf = SimpleDateFormat(myFormat, Locale.US)
+//        val myFormatshow = "dd/MM/yyyy"
+//        val sdfShow = SimpleDateFormat(myFormatshow, Locale.US)
+//        dateTime = sdf.format(myCalendar.time)
+//
+//        birthday!!.setText(sdfShow.format(myCalendar.time))
+//
+//    }
 
 
 

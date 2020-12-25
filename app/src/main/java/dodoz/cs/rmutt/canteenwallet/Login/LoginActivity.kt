@@ -22,6 +22,7 @@ class LoginActivity : BaseActivity() {
     lateinit var myAPI: INodeJS
     var compositeDisposable = CompositeDisposable()
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
@@ -34,15 +35,15 @@ class LoginActivity : BaseActivity() {
 
 
         btnlogin.setOnClickListener {
-            val email = edtid.text.toString().trim()
+            val username = edtid.text.toString().trim()
             val password = edtpass.text.toString().trim()
 
-            if (email.isEmpty()) {
-                edtidcard.error = "กรุณากรอกชื่อผู้ใช้งาน"
+            if (username.isEmpty()) {
+                edtid.error = "กรุณากรอกชื่อผู้ใช้งาน"
 
                 return@setOnClickListener
             }else if (password.isEmpty()) {
-                edtidcard.error = "กรุณากรอกรหัสผ่าน"
+                edtpass.error = "กรุณากรอกรหัสผ่าน"
 
                 return@setOnClickListener
             }else
@@ -57,8 +58,8 @@ class LoginActivity : BaseActivity() {
 
     }
 
-    private fun login (email: String,password:String){
-        compositeDisposable.add(myAPI.login(email,password)
+    private fun login (username: String,password:String){
+        compositeDisposable.add(myAPI.login(username,password)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe { message ->
