@@ -37,19 +37,23 @@
         <activity android:name=".Transfer.TransferActivity"></activity>
         <activity android:name=".Login.RegisterActivity"></activity>
         <activity android:name=".MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+
+
         </activity> <!-- <activity android:name="dodoz.cs.rmutt.canteenwallet.Login.VerifyActivity" /> -->
         <activity android:name=".Login.LoginActivity">
 
         </activity>
         <activity android:name=".SplashActivity">
 
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
 
         </activity>
+
     </application>
 
 </manifest>

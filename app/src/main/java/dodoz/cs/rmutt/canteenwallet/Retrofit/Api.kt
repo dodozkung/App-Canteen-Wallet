@@ -1,15 +1,18 @@
 package dodoz.cs.rmutt.canteenwallet.Retrofit
 
+import dodoz.cs.rmutt.canteenwallet.model.DefaultResponse
+import dodoz.cs.rmutt.canteenwallet.model.LoginResponse
 import io.reactivex.Observable
+import retrofit2.Call
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
 import retrofit2.http.POST
 
 
-interface INodeJS {
-    @POST("register")
+interface Api {
+    @POST("createuser")
     @FormUrlEncoded
-    fun register(
+    fun createuser(
         @Field("username") username: String,
         @Field("password") password: String,
         @Field("name") name: String,
@@ -17,13 +20,13 @@ interface INodeJS {
         @Field("address") address: String,
         @Field("passconfirm") passconfirm: String,
         @Field("phone") phone: String,
-    ):Observable<String>
+    ):Call<DefaultResponse>
 
 
-    @POST("login")
+    @POST("userlogin")
     @FormUrlEncoded
-    fun login(@Field("username") username:String,
-                 @Field("password") password:String):Observable<String>
+    fun userLogin(@Field("username") username:String,
+                 @Field("password") password:String):Call<LoginResponse>
 
 
 

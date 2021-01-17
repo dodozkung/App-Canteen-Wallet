@@ -1,35 +1,35 @@
 package dodoz.cs.rmutt.canteenwallet.Login
 
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.os.Handler
 import android.widget.Toast
 import dodoz.cs.rmutt.canteenwallet.BaseActivity
 import dodoz.cs.rmutt.canteenwallet.MainActivity
 import dodoz.cs.rmutt.canteenwallet.R
-import dodoz.cs.rmutt.canteenwallet.Retrofit.INodeJS
+import dodoz.cs.rmutt.canteenwallet.Retrofit.Api
 import dodoz.cs.rmutt.canteenwallet.Retrofit.RetrofitClient
-import io.reactivex.android.schedulers.AndroidSchedulers
+import dodoz.cs.rmutt.canteenwallet.Retrofit.SharedPrefManager
+import dodoz.cs.rmutt.canteenwallet.model.LoginResponse
 import io.reactivex.disposables.CompositeDisposable
-import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.activity_login.edtpass
 import kotlinx.android.synthetic.main.activity_register.*
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class LoginActivity : BaseActivity() {
 
-    lateinit var myAPI: INodeJS
+    lateinit var myAPI: Api
     var compositeDisposable = CompositeDisposable()
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-        //Init API
-        val retrofit = RetrofitClient.instance
-        myAPI = retrofit.create(INodeJS::class.java)
+
 
 
 
@@ -43,17 +43,44 @@ class LoginActivity : BaseActivity() {
                 edtid.error = "กรุณากรอกชื่อผู้ใช้งาน"
 
                 return@setOnClickListener
-            }else if (password.isEmpty()) {
+            }
+            if (password.isEmpty()) {
                 edtpass.error = "กรุณากรอกรหัสผ่าน"
 
                 return@setOnClickListener
-            }else
-            login(edtid.text.toString(),edtpass.text.toString())
+            }
+
+            RetrofitClient.instance.userLogin(username, password)
+                .enqueue(object: Callback<LoginResponse> {
+                    override fun onFailure(call: Call<LoginResponse>, t: Throwable) {
+                        Toast.makeText(applicationContext, t.message, Toast.LENGTH_LONG).show()
+                    }
+
+                    override fun onResponse(call: Call<LoginResponse>, response: Response<LoginResponse>) {
+                        if(!response.body()?.error!!){
+
+                            SharedPrefManager.getInstance(applicationContext).saveUser(response.body()?.user!!)
+
+                            val intent = Intent(applicationContext, MainActivity::class.java)
+                            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+
+                            startActivity(intent)
+
+
+                        }else{
+                            Toast.makeText(applicationContext, response.body()?.message, Toast.LENGTH_LONG).show()
+                        }
+
+                    }
+                })
+
+
+
 
         }
 
         btnregis.setOnClickListener {
-            val intent = Intent(this,RegisterActivity::class.java)
+            val intent = Intent(this, RegisterActivity::class.java)
             startActivity(intent)
         }
 
@@ -61,31 +88,61 @@ class LoginActivity : BaseActivity() {
     }
 
 
-    private fun login (username: String,password:String){
-        compositeDisposable.add(myAPI.login(username,password)
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe { message ->
-                if(message.contains("encrypted_password")) {
-                    Toast.makeText(this, "Login success", Toast.LENGTH_SHORT).show()
-                    Handler().postDelayed({
-                        startActivity(Intent(this, MainActivity::class.java))
-                        finish()
-                    },2000)
-                }else
-                    Toast.makeText(this,message,Toast.LENGTH_SHORT).show()
-            })
 
 
-    }
+//    private fun login(username: String, password: String) {
+//        compositeDisposable.add(myAPI.login(username, password)
+//            .subscribeOn(Schedulers.io())
+//            .observeOn(AndroidSchedulers.mainThread())
+//            .subscribe { message ->
+//                var txt = message.split(',').toTypedArray()
+//                var user = txt[2]
+//                var walletid = txt[0].substring(1,txt[0].length)
+//                var balance = txt[1]
+//                var pwcf = txt[3].substring(0,txt[3].length-1)
+//
+//                if (!message.contains("Wrong password")) {
+//                    Toast.makeText(this, "Login success", Toast.LENGTH_SHORT).show()
+//                    Handler().postDelayed({
+//                        session.setUser(user)
+//                        session.setBalance(balance)
+//                        session.setWallet(walletid)
+//                        session.setPassconfirm(pwcf)
+//                        Toast.makeText (this, user, Toast.LENGTH_SHORT).show()
+//                        Toast.makeText(this, walletid, Toast.LENGTH_SHORT).show()
+//                        Toast.makeText(this, balance, Toast.LENGTH_SHORT).show()
+//                        Toast.makeText(this, pwcf, Toast.LENGTH_SHORT).show()
+//                        intent.putExtra("username", user)
+//
+//
+//                        startActivity(Intent(this, MainActivity::class.java))
+//                        finish()
+//                    }, 2000)
+//                } else
+//                    Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+//            })
+//
+//
+//    }
 
-    override fun onStop() {
-        compositeDisposable.clear()
-        super.onStop()
-    }
+//    override fun onStop() {
+//        compositeDisposable.clear()
+//        super.onStop()
+//    }
+//
+//    override fun onDestroy() {
+//        compositeDisposable.clear()
+//        super.onDestroy()
+//    }
 
-    override fun onDestroy() {
-        compositeDisposable.clear()
-        super.onDestroy()
+    override fun onStart() {
+        super.onStart()
+
+        if(SharedPrefManager.getInstance(this).isLoggedIn){
+            val intent = Intent(applicationContext, MainActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+
+            startActivity(intent)
+        }
     }
 }

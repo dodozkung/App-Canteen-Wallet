@@ -18,7 +18,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="60dp"
             android:gravity="center_horizontal"
-            android:text="โอนเงิน"
+            android:text="จ่ายเงิน"
             android:textColor="@color/white"
             android:textSize="40dp" />
 

@@ -260,6 +260,7 @@
                     android:drawablePadding="15dp"
                     android:gravity="center_vertical"
                     android:hint="รหัสนักศึกษา(มีขีด)"
+                    android:maxLength="14"
                     android:textColorHint="@color/Rmutt"
                     android:inputType="text"
                     android:padding="10dp"
@@ -352,11 +353,11 @@
                     android:gravity="center_vertical"
                     android:hint="รหัสธุรกรรม"
                     android:textColorHint="@color/Rmutt"
-                    android:inputType="textEmailAddress"
+                    android:inputType="numberDecimal"
                     android:padding="10dp"
                     android:textSize="16dp"
                     android:digits="0123456789"
-                    app:counterMaxLength="6"
+                    android:maxLength="6"
                     android:textColor="@color/Rmutt"/>
 
             </LinearLayout>
@@ -381,7 +382,7 @@
                     android:drawableLeft="@drawable/ic_phone"
                     android:drawablePadding="15dp"
                     android:gravity="center_vertical"
-                    android:inputType="phone"
+                    android:inputType="numberDecimal"
                     android:maxLength="10"
                     android:padding="10dp"
                     android:textSize="16dp"
@@ -392,6 +393,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:orientation="vertical"
                 android:gravity="center">
 
                 <Button
@@ -404,7 +406,18 @@
                     android:layout_marginTop="25dp"
                     android:layout_marginRight="40dp"
                     android:background="@drawable/btnlogin"
-                    android:text="ยืนยันข้อมูลถูกต้อง"
+                    android:text="สมัครสมาชิก"
+                    android:textColor="@color/white"
+                    android:textSize="15dp" />
+
+                <Button
+                    android:id="@+id/btnreturnlogin"
+                    android:layout_width="250dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="40dp"
+                    android:layout_marginRight="40dp"
+                    android:background="@drawable/btnlogin"
+                    android:text="เข้าสู่ระบบ"
                     android:textColor="@color/white"
                     android:textSize="15dp" />
 

@@ -6,21 +6,25 @@ import android.os.Handler
 import android.widget.Toast
 
 import dodoz.cs.rmutt.canteenwallet.*
-import dodoz.cs.rmutt.canteenwallet.Retrofit.INodeJS
+import dodoz.cs.rmutt.canteenwallet.Retrofit.Api
 import dodoz.cs.rmutt.canteenwallet.Retrofit.RetrofitClient
+import dodoz.cs.rmutt.canteenwallet.Retrofit.SharedPrefManager
+import dodoz.cs.rmutt.canteenwallet.model.DefaultResponse
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_register.*
 import kotlinx.android.synthetic.main.activity_register.edtpass
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import java.util.*
 
 class RegisterActivity : BaseActivity() {
 
     private var dateTime = ""
-    lateinit var myAPI: INodeJS
+    lateinit var myAPI: Api
     var compositeDisposable = CompositeDisposable()
-
 
 
     val myCalendar = Calendar.getInstance()
@@ -37,8 +41,6 @@ class RegisterActivity : BaseActivity() {
 //        init()
 
         //Init API
-        val retrofit = RetrofitClient.instance
-        myAPI = retrofit.create(INodeJS::class.java)
 
 
 //        rg_gender.setOnCheckedChangeListener { group, checkedId ->
@@ -52,6 +54,11 @@ class RegisterActivity : BaseActivity() {
 //            }
 //        }
 
+        btnreturnlogin.setOnClickListener {
+            val intent = Intent(this, LoginActivity::class.java)
+            startActivity(intent)
+        }
+
         btnconprofile.setOnClickListener {
             val name = edtname.text.toString().trim()
             val idcard = edtidcard.text.toString().trim()
@@ -59,7 +66,7 @@ class RegisterActivity : BaseActivity() {
             val phone = edtphone.text.toString().trim()
             val address = edtaddress.text.toString().trim()
             val password = edtpass.text.toString().trim()
-            val conpassword = edtconpass.text.toString().trim()
+            val passconfirm = edtconpass.text.toString().trim()
             val pw = edtpw.text.toString().trim()
 
 
@@ -68,85 +75,89 @@ class RegisterActivity : BaseActivity() {
 
 
             if (username.isEmpty()) {
-                 edtusername.error = "กรุณากรอกชื่อผู้ใช้"
+                edtusername.error = "กรุณากรอกชื่อผู้ใช้"
                 return@setOnClickListener
-            } else if (password.isEmpty() || password.length <=6) {
+            }
+            if (password.isEmpty() || password.length < 6) {
                 edtpass.error = "กรุณากรอกรหัสผ่านมากกว่า 5 ตัว"
-
                 return@setOnClickListener
-            } else if (conpassword.isEmpty() || conpassword.length <=6) {
+            }
+            if (passconfirm.isEmpty() || passconfirm.length < 6) {
                 edtconpass.error = "กรุณากรอกรหัสผ่านมากกว่า 5 ตัว"
 
                 return@setOnClickListener
-            } else if (!conpassword.equals(password)) {
+            }
+            if (!passconfirm.equals(password)) {
                 edtconpass.error = "รหัสผ่านไม่ตรงกัน"
 
                 return@setOnClickListener
-            }  else if (name.isEmpty()) {
+            }
+            if (name.isEmpty()) {
                 edtname.error = "กรุณากรอกชื่อ - นามสกุล"
                 return@setOnClickListener
-            }  else if (address.isEmpty()) {
-                edtaddress.error = "กรุณากรอกรหัสนักศึกษา"
+            }
+            if (address.isEmpty()) {
+                edtaddress.error = "กรุณากรอกที่อยู่"
 
                 return@setOnClickListener
-            }   else if (idcard.isEmpty()) {
+            }
+            if (idcard.isEmpty()) {
                 edtidcard.error = "กรุณากรอกรหัสนักศึกษา"
 
                 return@setOnClickListener
-            }       else if (pw.isEmpty() || pw.length == 6) {
+            } else if (pw.isEmpty() || pw.length < 6) {
                 edtpw.error = "กรุณากรอกรหัสธุรกรรม 6 ตัว"
 
                 return@setOnClickListener
-            }   else if (phone.isEmpty() || phone.length <9) {
-                edtphone.error = "กรุณากรอกเบอร์โทรศัพท์"
+            }
+            if (phone.isEmpty() || phone.length < 10) {
+                edtphone.error = "กรุณากรอกเบอร์โทรศัพท์ 10 หลัก"
 
                 return@setOnClickListener
-            }   else {
-                register(edtusername.text.toString(),
-                    edtpass.text.toString(),
-                    edtname.text.toString(),
-                    edtaddress.text.toString(),
-                    edtidcard.text.toString(),
-                    edtpw.text.toString(),
-                    edtphone.text.toString())
             }
-            }
+
+            RetrofitClient.instance.createuser(
+                username,
+                password,
+                name,
+                address,
+                idcard,
+                passconfirm,
+                phone
+            )
+                .enqueue(object : Callback<DefaultResponse> {
+                    override fun onFailure(call: Call<DefaultResponse>, t: Throwable) {
+                        Toast.makeText(applicationContext, t.message, Toast.LENGTH_LONG).show()
+                    }
+
+                    override fun onResponse(
+                        call: Call<DefaultResponse>,
+                        response: Response<DefaultResponse>
+                    ) {
+                        Toast.makeText(
+                            applicationContext,
+                            response.body()?.message,
+                            Toast.LENGTH_LONG
+                        ).show()
+                    }
+
+                })
 
 
         }
 
-    private fun register (
-        username : String,
-        password: String,
-        name: String,
-        adddress: String,
-        idcard: String,
-        passconfirm : String,
-        phone : String
-    ){
-        compositeDisposable.add(myAPI.register(username,password,name,adddress,idcard,passconfirm,phone)
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe { message ->
-                    Toast.makeText(this, "Register success", Toast.LENGTH_SHORT).show()
-                    Handler().postDelayed({
-                        startActivity(Intent(this, LoginActivity::class.java))
-                        finish()
-                    },2000)
-                })
-            }
 
-
-
-
-    override fun onStop() {
-        compositeDisposable.clear()
-        super.onStop()
     }
 
-    override fun onDestroy() {
-        compositeDisposable.clear()
-        super.onDestroy()
+    override fun onStart() {
+        super.onStart()
+
+        if (SharedPrefManager.getInstance(this).isLoggedIn) {
+            val intent = Intent(applicationContext, MainActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+
+            startActivity(intent)
+        }
     }
 
 
@@ -186,8 +197,6 @@ class RegisterActivity : BaseActivity() {
 //        birthday!!.setText(sdfShow.format(myCalendar.time))
 //
 //    }
-
-
 
 
 }

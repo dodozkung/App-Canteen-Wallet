@@ -2,15 +2,15 @@ package dodoz.cs.rmutt.canteenwallet
 
 import android.content.Context
 import android.content.Intent
-import android.content.SharedPreferences
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import dodoz.cs.rmutt.canteenwallet.Login.LoginActivity
-import dodoz.cs.rmutt.canteenwallet.PayQrcode.PayQrcodeActivity
-import dodoz.cs.rmutt.canteenwallet.Transfer.TransferActivity
+import dodoz.cs.rmutt.canteenwallet.Retrofit.SharedPrefManager
 import kotlinx.android.synthetic.main.activity_main.*
 
+
 class MainActivity : AppCompatActivity() {
+
 
 
 
@@ -20,23 +20,32 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+
+
+
+
         btnlogout.setOnClickListener {
-            val intent = Intent(this, LoginActivity::class.java)
-            startActivity(intent)
-        }
 
-        transfermain!!.setOnClickListener {
-            val intent = Intent(this, TransferActivity::class.java)
-            startActivity(intent)
-        }
+            SharedPrefManager.getInstance(this).clear()
 
-        payqrcodemain!!.setOnClickListener {
-            val intent = Intent(this, PayQrcodeActivity::class.java)
+            var intent = Intent(this,MainActivity::class.java)
             startActivity(intent)
+            finish()
+
         }
 
 
 
     }
+    override fun onStart() {
+        super.onStart()
+
+        if(!SharedPrefManager.getInstance(this).isLoggedIn){
+            val intent = Intent(applicationContext, LoginActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            startActivity(intent)
+        }
+    }
+
 }
 
