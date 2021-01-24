@@ -68,6 +68,7 @@
                     android:layout_height="wrap_content"
                     android:inputType="numberPassword"
                     android:hint=""
+
                     android:cursorVisible="true"
                     android:padding="10dp"
                     android:textColor="@color/white"
@@ -85,20 +86,20 @@
 
             </LinearLayout>
 
-            <FrameLayout
-                xmlns:android="http://schemas.android.com/apk/res/android"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+<!--            <FrameLayout-->
+<!--                xmlns:android="http://schemas.android.com/apk/res/android"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="match_parent">-->
 
-                <com.konaire.numerickeyboard.NumericKeyboard
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="bottom"
-                    android:layout_marginBottom="20dp"
-                    app:field="@+id/firstPinView"
+<!--                <com.konaire.numerickeyboard.NumericKeyboard-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_gravity="bottom"-->
+<!--                    android:layout_marginBottom="20dp"-->
+<!--                    app:field="@+id/firstPinView"-->
 
-                    app:keyTextColor="@color/white" />
-            </FrameLayout>
+<!--                    app:keyTextColor="@color/white" />-->
+<!--            </FrameLayout>-->
 
 
         </LinearLayout>

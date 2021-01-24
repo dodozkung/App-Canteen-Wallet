@@ -106,11 +106,12 @@
                 android:textStyle="bold" />
 
             <TextView
+                android:id="@+id/Balance"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="100dp"
                 android:gravity="center_horizontal"
-                android:text="000.00"
+                android:text="0.000"
                 android:textColor="@color/black"
                 android:textSize="35dp"
                 android:textStyle="bold" />
@@ -130,15 +131,18 @@
             <!--        </RelativeLayout>-->
 
             <RelativeLayout
-                android:layout_width="45dp"
-                android:layout_height="45dp"
+                android:id="@+id/refresh"
+                android:layout_width="55dp"
+                android:layout_height="55dp"
+                android:background="@drawable/bgcamera"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentBottom="true">
 
                 <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_refresh"
+                    android:layout_centerInParent="true"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:src="@drawable/ic_reload"
 
                     />
             </RelativeLayout>

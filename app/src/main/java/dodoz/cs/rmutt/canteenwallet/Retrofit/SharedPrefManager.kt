@@ -1,10 +1,11 @@
 package dodoz.cs.rmutt.canteenwallet.Retrofit
 
 import android.content.Context
-import dodoz.cs.rmutt.canteenwallet.model.User
+import dodoz.cs.rmutt.canteenwallet.model.*
 
 
 class SharedPrefManager private constructor(private val mCtx: Context) {
+
 
     val isLoggedIn: Boolean
         get() {
@@ -12,18 +13,6 @@ class SharedPrefManager private constructor(private val mCtx: Context) {
                 mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE)
             return sharedPreferences.getInt("wallet_id", -1) != -1
         }
-
-//    val user: User
-//        get() {
-//            val sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE)
-//            return User(
-//                sharedPreferences.getInt("id", -1),
-//                sharedPreferences.getString("email", null),
-//                sharedPreferences.getString("name", null),
-//                sharedPreferences.getString("school", null)
-//            )
-//        }
-
 
     fun saveUser(user: User) {
 
@@ -38,6 +27,31 @@ class SharedPrefManager private constructor(private val mCtx: Context) {
         editor.putString("passconfirm", user.passconfirm)
         editor.putString("phone", user.phone)
         editor.putString("status", user.status)
+
+        editor.apply()
+
+    }
+
+    fun getUser(user: GetUser) {
+
+        val sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE)
+        val editor = sharedPreferences.edit()
+
+        editor.putFloat("balance", user.balance)
+        editor.putString("name", user.name)
+        editor.putString("idcard", user.idcard)
+        editor.putString("status", user.status)
+
+        editor.apply()
+
+    }
+
+    fun getSearch(user: getNameUser) {
+
+        val sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE)
+        val editor = sharedPreferences.edit()
+
+        editor.putString("name1", user.name)
 
         editor.apply()
 
@@ -63,3 +77,4 @@ class SharedPrefManager private constructor(private val mCtx: Context) {
         }
     }
 }
+

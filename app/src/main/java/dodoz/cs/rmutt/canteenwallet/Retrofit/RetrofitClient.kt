@@ -1,17 +1,25 @@
 package dodoz.cs.rmutt.canteenwallet.Retrofit
 
 import android.util.Base64
+import com.google.gson.GsonBuilder
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
-
 import retrofit2.converter.gson.GsonConverterFactory
 
 
 object RetrofitClient {
 
-    private val AUTH = "Basic "+ Base64.encodeToString("dodozkung:123456".toByteArray(), Base64.NO_WRAP)
+    private val AUTH = "Basic "+ Base64.encodeToString(
+        "dodozkung:123456".toByteArray(),
+        Base64.NO_WRAP
+    )
 
-    private const val BASE_URL = "http://10.0.1.10/myapi/public/"
+//    private const val BASE_URL = "http://nackmine.ddns.net/apiddz/myapi/public/"
+    private const val BASE_URL = "http://172.20.10.3/myapi/public/"
+
+    var gson = GsonBuilder()
+        .setLenient()
+        .create()
 
     private val okHttpClient = OkHttpClient.Builder()
         .addInterceptor { chain ->

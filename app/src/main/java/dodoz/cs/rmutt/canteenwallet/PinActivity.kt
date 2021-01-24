@@ -23,7 +23,7 @@ class PinActivity : AppCompatActivity() {
 //                hideDialog()
                     firstPinView!!.error = "รหัส OTP ผิดกรุณาลองอีกครั้ง"
                     firstPinView!!.requestFocus()
-                } else {
+                } else if (code.toString() == equals("123456")) {
                     val intent = Intent(this, MainActivity::class.java)
                     startActivity(intent)
                 }

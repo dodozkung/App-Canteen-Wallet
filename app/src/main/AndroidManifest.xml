@@ -25,7 +25,11 @@
         android:theme="@style/AppTheme.NoActionBar"
         tools:replace="android:label">
         <activity android:name=".PinActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity
             android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
@@ -44,13 +48,10 @@
         <activity android:name=".Login.LoginActivity">
 
         </activity>
+
         <activity android:name=".SplashActivity">
 
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
 
         </activity>
 

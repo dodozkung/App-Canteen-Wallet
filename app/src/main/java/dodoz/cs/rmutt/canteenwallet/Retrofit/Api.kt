@@ -1,11 +1,11 @@
 package dodoz.cs.rmutt.canteenwallet.Retrofit
 
-import dodoz.cs.rmutt.canteenwallet.model.DefaultResponse
-import dodoz.cs.rmutt.canteenwallet.model.LoginResponse
+import dodoz.cs.rmutt.canteenwallet.model.*
 import io.reactivex.Observable
 import retrofit2.Call
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
+import retrofit2.http.GET
 import retrofit2.http.POST
 
 
@@ -29,6 +29,12 @@ interface Api {
                  @Field("password") password:String):Call<LoginResponse>
 
 
+    @POST("getDataUser")
+    @FormUrlEncoded
+    fun getDataUser(@Field("wallet_id") wallet_id: Int):Call<getData>
 
+    @POST("SeachUser")
+    @FormUrlEncoded
+    fun SeachUser(@Field("wallet_id") wallet_id: Int):Call<getSearch>
 
 }
