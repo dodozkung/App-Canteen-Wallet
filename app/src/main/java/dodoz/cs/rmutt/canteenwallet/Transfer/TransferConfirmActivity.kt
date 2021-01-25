@@ -3,6 +3,7 @@ package dodoz.cs.rmutt.canteenwallet.Transfer
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
 import android.widget.Toast
 import dodoz.cs.rmutt.canteenwallet.BaseActivity
 import dodoz.cs.rmutt.canteenwallet.PinActivity
@@ -23,6 +24,9 @@ class TransferConfirmActivity : BaseActivity() {
         setContentView(R.layout.activity_transfer_confirm)
 
         init()
+        recheck()
+
+
 
 
 
@@ -51,37 +55,16 @@ class TransferConfirmActivity : BaseActivity() {
 
         val name1 = sharedPrefManager.getString("name1", "")
 
-        Toast.makeText(this, name1, Toast.LENGTH_LONG).show()
+//        Toast.makeText(this, name1, Toast.LENGTH_LONG).show()
         showname!!.setText(name1)
 
-
-        val walletid = intent.getStringExtra("walletid")
-//        Toast.makeText(this, walletid , Toast.LENGTH_LONG).show()
-
-        RetrofitClient.instance.SeachUser(walletid.toInt())
-            .enqueue(object : Callback<getSearch> {
-                override fun onFailure(call: Call<getSearch>, t: Throwable) {
-                    Toast.makeText(applicationContext, t.message, Toast.LENGTH_LONG).show()
-                }
-
-                override fun onResponse(call: Call<getSearch>, response: Response<getSearch>) {
-                    if (!response.body()?.error!!) {
-
-                        SharedPrefManager.getInstance(this@TransferConfirmActivity).getSearch(response.body()?.user!!)
-
-
-
-                    } else {
-                        Toast.makeText(
-                            applicationContext,
-                            response.body()?.message,
-                            Toast.LENGTH_LONG
-                        ).show()
-                    }
-
-                }
-            })
-
     }
+     private fun recheck(){
+         Handler().postDelayed({
+             init()
+         },300)
+     }
+
+
 
 }

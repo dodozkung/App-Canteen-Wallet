@@ -37,12 +37,14 @@
                 android:textSize="30dp" />
 
             <EditText
+                android:id="@+id/accshop"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginHorizontal="40dp"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/frametext"
-                android:hint="กรอกบัญชีร้านค้าที่ต้องการโอนเงิน"
+                android:focusable="false"
+                android:text=""
                 android:paddingHorizontal="20dp"
                 android:textColor="@color/Rmutt"
                 android:textColorHint="@color/Rmutt" />
@@ -64,6 +66,7 @@
                 android:textSize="30dp" />
 
             <EditText
+                android:id="@+id/amoutshop"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginHorizontal="40dp"

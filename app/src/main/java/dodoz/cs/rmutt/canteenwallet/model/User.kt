@@ -4,5 +4,5 @@ data class User(val wallet_id:Int, val balance:Float, val username:String, val n
 
 data class GetUser(val balance:Float, val name:String, val idcard:String, val status:String)
 
-data class getNameUser(val name:String)
+data class getNameUser(val name1:String)
 

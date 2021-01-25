@@ -17,17 +17,17 @@ class PinActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_pin)
 
-            logopin.setOnClickListener {
-                val code = firstPinView!!.text.toString().trim()
-                if (code.isEmpty() || code.length < 6) {
-//                hideDialog()
-                    firstPinView!!.error = "รหัส OTP ผิดกรุณาลองอีกครั้ง"
-                    firstPinView!!.requestFocus()
-                } else if (code.toString() == equals("123456")) {
-                    val intent = Intent(this, MainActivity::class.java)
-                    startActivity(intent)
-                }
-            }
+//            logopin.setOnClickListener {
+//                val code = firstPinView!!.text.toString().trim()
+//                if (code.isEmpty() || code.length < 6) {
+////                hideDialog()
+//                    firstPinView!!.error = "รหัส OTP ผิดกรุณาลองอีกครั้ง"
+//                    firstPinView!!.requestFocus()
+//                } else if (code.toString() == equals("123456")) {
+//                    val intent = Intent(this, MainActivity::class.java)
+//                    startActivity(intent)
+//                }
+//            }
 
 
 
