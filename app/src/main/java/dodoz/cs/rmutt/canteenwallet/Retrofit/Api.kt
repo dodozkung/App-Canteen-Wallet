@@ -35,6 +35,24 @@ interface Api {
 
     @POST("SeachUser")
     @FormUrlEncoded
-    fun SeachUser(@Field("wallet_id") wallet_id: Int):Call<getSearch>
+    fun SeachUser(
+        @Field("wallet_id") wallet_id: Int
+    ):Call<getSearch>
+
+    @POST("Transfer")
+    @FormUrlEncoded
+    fun postTransferT(
+        @Field("wallet_id") wallet_id: Int,
+        @Field("EndAccID") EndAccID : Int,
+        @Field("Amout") Amout: Float
+    ):Call<Transfer>
+
+    @POST("TransferQR")
+    @FormUrlEncoded
+    fun postTransferP(
+        @Field("wallet_id") wallet_id: Int,
+        @Field("EndAccID") EndAccID : Int,
+        @Field("Amout") Amout: Float
+    ):Call<TransferA>
 
 }

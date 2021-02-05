@@ -25,6 +25,7 @@ class TransferConfirmActivity : BaseActivity() {
 
         init()
         recheck()
+        
 
 
 
@@ -45,7 +46,14 @@ class TransferConfirmActivity : BaseActivity() {
 
         checktransfer!!.setOnClickListener {
             val intent = Intent(this,PinActivity::class.java)
+//            val walletid = intent.getStringExtra("walletid")
+
+            intent.putExtra("walletid2", walletid)
+            intent.putExtra("amout", amout)
+
+
             startActivity(intent)
+
         }
     }
 
@@ -54,6 +62,10 @@ class TransferConfirmActivity : BaseActivity() {
         val sharedPrefManager = getSharedPreferences("my_shared_preff", Context.MODE_PRIVATE)
 
         val name1 = sharedPrefManager.getString("name1", "")
+
+//        if (name1 == "null"){
+//            Toast.makeText(this, "หาข้อมูลไม่ได้", Toast.LENGTH_LONG).show()
+//        }
 
 //        Toast.makeText(this, name1, Toast.LENGTH_LONG).show()
         showname!!.setText(name1)

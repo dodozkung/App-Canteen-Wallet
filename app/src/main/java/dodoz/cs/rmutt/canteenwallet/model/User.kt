@@ -6,3 +6,5 @@ data class GetUser(val balance:Float, val name:String, val idcard:String, val st
 
 data class getNameUser(val name1:String)
 
+
+

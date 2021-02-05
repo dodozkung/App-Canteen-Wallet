@@ -132,7 +132,7 @@
             >
 
             <LinearLayout
-                android:id="@+id/backtransfer"
+                android:id="@+id/backpayqr"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="15dp"
@@ -163,7 +163,7 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/checktransfer"
+                android:id="@+id/checkpayqr"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="5"

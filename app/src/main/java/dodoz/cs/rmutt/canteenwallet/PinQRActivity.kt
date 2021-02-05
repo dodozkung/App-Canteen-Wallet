@@ -20,7 +20,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class PinActivity : AppCompatActivity() {
+class PinQRActivity : AppCompatActivity() {
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -59,13 +59,13 @@ class PinActivity : AppCompatActivity() {
 
             if (pinview1.value == status) {
 
-                RetrofitClient.instance.postTransferT(walletid,EndAcc.toInt(),amout.toFloat())
-                    .enqueue(object : Callback<Transfer> {
-                        override fun onFailure(call: Call<Transfer>, t: Throwable) {
+                RetrofitClient.instance.postTransferP(walletid,EndAcc.toInt(),amout.toFloat())
+                    .enqueue(object : Callback<TransferA> {
+                        override fun onFailure(call: Call<TransferA>, t: Throwable) {
                             Toast.makeText(applicationContext, t.message, Toast.LENGTH_LONG).show()
                         }
 
-                        override fun onResponse(call: Call<Transfer>, response: Response<Transfer>) {
+                        override fun onResponse(call: Call<TransferA>, response: Response<TransferA>) {
                             if (response.body()?.user!!) {
 
                                 val intent = Intent(applicationContext, MainActivity::class.java)

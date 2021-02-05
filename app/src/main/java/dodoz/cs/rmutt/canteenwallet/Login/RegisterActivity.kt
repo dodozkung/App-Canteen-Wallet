@@ -160,6 +160,27 @@ class RegisterActivity : BaseActivity() {
         }
     }
 
+    fun String.isValidThaiId(): Boolean {
+        this.let {
+            return if (it.length != 13) {
+                false
+            } else {
+                val digits = ("0$it").substring(0, 13).map { it.toString().toInt() }
+                val lastDigit = it.substring(12, 13)
+                val sum = digits.reduceIndexed { index, total, next ->
+                    total + (next * (13 + 1 - index))
+                }
+                val checkDigit = 11 - (sum % 11)
+
+                (checkDigit.toString()[0].toString() == lastDigit)
+            }
+        }
+    }
+
+
+
+
+
 
 //    private fun init() {
 ////        loadPhoneNumber()

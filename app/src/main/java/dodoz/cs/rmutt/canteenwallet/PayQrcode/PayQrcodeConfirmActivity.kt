@@ -6,21 +6,21 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.widget.Toast
+import dodoz.cs.rmutt.canteenwallet.BaseActivity
 import dodoz.cs.rmutt.canteenwallet.PinActivity
+import dodoz.cs.rmutt.canteenwallet.PinQRActivity
 import dodoz.cs.rmutt.canteenwallet.R
 import dodoz.cs.rmutt.canteenwallet.Retrofit.RetrofitClient
 import dodoz.cs.rmutt.canteenwallet.Retrofit.SharedPrefManager
 import dodoz.cs.rmutt.canteenwallet.model.getSearch
 import kotlinx.android.synthetic.main.activity_pay_qrcode_check.*
 import kotlinx.android.synthetic.main.activity_pay_qrcode_confirm.*
-import kotlinx.android.synthetic.main.activity_pay_qrcode_confirm.backtransfer
-import kotlinx.android.synthetic.main.activity_pay_qrcode_confirm.checktransfer
 import kotlinx.android.synthetic.main.activity_transfer_confirm.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class PayQrcodeConfirmActivity : AppCompatActivity() {
+class PayQrcodeConfirmActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_pay_qrcode_confirm)
@@ -32,16 +32,21 @@ class PayQrcodeConfirmActivity : AppCompatActivity() {
         showaccshop!!.setText(accshop)
 //        Toast.makeText(this, walletid , Toast.LENGTH_LONG).show()
         val amoutshop = intent.getStringExtra("amoutshop")
-        showamout!!.setText(amoutshop.toString())
+        showamout!!.setText(amoutshop)
 //        Toast.makeText(this, amout , Toast.LENGTH_LONG).show()
 
-        backtransfer!!.setOnClickListener {
+        backpayqr!!.setOnClickListener {
             val intent = Intent(this, PayQrcodeCheckActivity::class.java)
             startActivity(intent)
         }
-        checktransfer!!.setOnClickListener {
-            val intent = Intent(this, PinActivity::class.java)
+
+        checkpayqr!!.setOnClickListener {
+
+            val intent = Intent(this,PinQRActivity::class.java)
+            intent.putExtra("walletid2", accshop)
+            intent.putExtra("amout", amoutshop)
             startActivity(intent)
+
         }
 
     }
