@@ -33,7 +33,7 @@ class PinQRActivity : AppCompatActivity() {
 //        Toast.makeText(this, EndAcc , Toast.LENGTH_LONG).show()
         val sharedPrefManager = getSharedPreferences("my_shared_preff", Context.MODE_PRIVATE)
 
-        val walletid = sharedPrefManager.getInt("wallet_id", 0)
+        val walletid = sharedPrefManager.getString("wallet_id", "")
         val status =  sharedPrefManager.getString("passconfirm", "")
         val EndAcc = intent.getStringExtra("walletid2")
         val amout = intent.getStringExtra("amout")
@@ -59,7 +59,7 @@ class PinQRActivity : AppCompatActivity() {
 
             if (pinview1.value == status) {
 
-                RetrofitClient.instance.postTransferP(walletid,EndAcc.toInt(),amout.toFloat())
+                RetrofitClient.instance.postTransferP(walletid!!,EndAcc,amout.toFloat())
                     .enqueue(object : Callback<TransferA> {
                         override fun onFailure(call: Call<TransferA>, t: Throwable) {
                             Toast.makeText(applicationContext, t.message, Toast.LENGTH_LONG).show()
@@ -121,7 +121,7 @@ class PinQRActivity : AppCompatActivity() {
 
         val sharedPrefManager = getSharedPreferences("my_shared_preff", Context.MODE_PRIVATE)
 
-        val walletid = sharedPrefManager.getInt("wallet_id", 0)
+        val walletid = sharedPrefManager.getString("wallet_id", "")
         val passconfirm =  sharedPrefManager.getString("passconfirm", "")
         val EndAcc = intent.getStringExtra("walletid2")
         val amout = intent.getStringExtra("amout")

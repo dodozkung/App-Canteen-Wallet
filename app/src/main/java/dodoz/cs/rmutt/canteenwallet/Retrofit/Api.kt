@@ -16,8 +16,8 @@ interface Api {
         @Field("username") username: String,
         @Field("password") password: String,
         @Field("name") name: String,
-        @Field("idcard") idcard: String,
         @Field("address") address: String,
+        @Field("idcard") idcard: String,
         @Field("passconfirm") passconfirm: String,
         @Field("phone") phone: String,
     ):Call<DefaultResponse>
@@ -31,7 +31,7 @@ interface Api {
 
     @POST("getDataUser")
     @FormUrlEncoded
-    fun getDataUser(@Field("wallet_id") wallet_id: Int):Call<getData>
+    fun getDataUser(@Field("wallet_id") wallet_id: String):Call<getData>
 
     @POST("SeachUser")
     @FormUrlEncoded
@@ -42,16 +42,16 @@ interface Api {
     @POST("Transfer")
     @FormUrlEncoded
     fun postTransferT(
-        @Field("wallet_id") wallet_id: Int,
-        @Field("EndAccID") EndAccID : Int,
+        @Field("wallet_id") wallet_id: String,
+        @Field("EndAccID") EndAccID : String,
         @Field("Amout") Amout: Float
     ):Call<Transfer>
 
     @POST("TransferQR")
     @FormUrlEncoded
     fun postTransferP(
-        @Field("wallet_id") wallet_id: Int,
-        @Field("EndAccID") EndAccID : Int,
+        @Field("wallet_id") wallet_id: String,
+        @Field("EndAccID") EndAccID : String,
         @Field("Amout") Amout: Float
     ):Call<TransferA>
 

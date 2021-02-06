@@ -86,7 +86,7 @@
                     android:id="@+id/pinview1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:cursorVisible="false"
+                    app:cursorVisible="true"
                     app:forceKeyboard="true"
                     app:hint=""
                     app:inputType="number"

@@ -11,7 +11,7 @@ class SharedPrefManager private constructor(private val mCtx: Context) {
         get() {
             val sharedPreferences =
                 mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE)
-            return sharedPreferences.getInt("wallet_id", -1) != -1
+            return sharedPreferences.getInt("N_ID", -1) != -1
         }
 
     fun saveUser(user: User) {
@@ -19,7 +19,8 @@ class SharedPrefManager private constructor(private val mCtx: Context) {
         val sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE)
         val editor = sharedPreferences.edit()
 
-        editor.putInt("wallet_id", user.wallet_id)
+        editor.putInt("N_ID", user.N_ID)
+        editor.putString("wallet_id", user.wallet_id)
         editor.putFloat("balance", user.balance)
         editor.putString("username", user.username)
         editor.putString("name", user.name)

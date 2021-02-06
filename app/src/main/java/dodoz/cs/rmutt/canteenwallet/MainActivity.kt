@@ -25,6 +25,15 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        btnlogout.setOnClickListener {
+
+            SharedPrefManager.getInstance(this).clear()
+
+            var intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+            finish()
+
+        }
 
         init()
 
@@ -41,15 +50,7 @@ class MainActivity : AppCompatActivity() {
 
 
 
-        btnlogout.setOnClickListener {
 
-            SharedPrefManager.getInstance(this).clear()
-
-            var intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
-            finish()
-
-        }
 
         transfermain.setOnClickListener {
 
@@ -80,18 +81,19 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
     }
+
     private fun init(){
         val sharedPrefManager = getSharedPreferences("my_shared_preff", Context.MODE_PRIVATE)
 
-        val walletid = sharedPrefManager.getInt("wallet_id", 0)
+        val walletid = sharedPrefManager.getString("wallet_id", "")
 //        Toast.makeText(applicationContext, walletid.toString(), Toast.LENGTH_LONG).show()
         val balance = sharedPrefManager.getFloat("balance", 0.0F)
         Balance.text = balance.toString()
         val name = sharedPrefManager.getString("name", "")
-        acccount.text = walletid.toString() + " - " + name.toString()
+        acccount.text = walletid + " - " + name.toString()
 
 
-        RetrofitClient.instance.getDataUser(walletid)
+        RetrofitClient.instance.getDataUser(walletid!!)
             .enqueue(object : Callback<getData> {
                 override fun onFailure(call: Call<getData>, t: Throwable) {
                     Toast.makeText(applicationContext, t.message, Toast.LENGTH_LONG).show()
