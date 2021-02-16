@@ -55,4 +55,8 @@ interface Api {
         @Field("Amout") Amout: Float
     ):Call<TransferA>
 
+    @GET ("Report")
+    @FormUrlEncoded
+    fun Report(@Field("wallet_id") wallet_id: String):Call<Data>
+
 }

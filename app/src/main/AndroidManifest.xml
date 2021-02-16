@@ -24,13 +24,17 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar"
         tools:replace="android:label">
-        <activity android:name=".recycleview"></activity>
+        <activity
+            android:name=".ReportActivity"
+            android:label="@string/title_activity_report"
+            android:theme="@style/AppTheme.NoActionBar.NoActionBar"></activity>
+<!--        <activity android:name=".recycleview" />-->
         <activity
             android:name=".CaptureActivity"
             android:screenOrientation="fullSensor"
             android:stateNotNeeded="true"
             android:windowSoftInputMode="stateAlwaysHidden" />
-        <activity android:name=".PinActivity"></activity>
+        <activity android:name=".PinActivity" />
         <activity
             android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
             android:theme="@style/Base.Theme.AppCompat" />

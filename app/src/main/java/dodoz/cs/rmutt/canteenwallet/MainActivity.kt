@@ -49,8 +49,12 @@ class MainActivity : AppCompatActivity() {
 
 
 
+        btn_check.setOnClickListener {
+            var intent = Intent(this, TransferActivity::class.java)
+            startActivity(intent)
+            finish()
 
-
+        }
 
         transfermain.setOnClickListener {
 

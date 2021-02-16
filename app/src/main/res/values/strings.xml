@@ -15,4 +15,5 @@
     <string name="hint">Input some numbers</string>
     <string name="male">ชาย</string>
     <string name="female">หญิง</string>
+    <string name="title_activity_report">ReportActivity</string>
 </resources>
