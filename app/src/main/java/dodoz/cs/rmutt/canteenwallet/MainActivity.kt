@@ -5,7 +5,10 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.util.Log
+import android.view.LayoutInflater
+import android.widget.Button
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import dodoz.cs.rmutt.canteenwallet.Login.LoginActivity
 import dodoz.cs.rmutt.canteenwallet.PayQrcode.PayQrcodeActivity
@@ -14,6 +17,7 @@ import dodoz.cs.rmutt.canteenwallet.Retrofit.SharedPrefManager
 import dodoz.cs.rmutt.canteenwallet.Transfer.TransferActivity
 import dodoz.cs.rmutt.canteenwallet.model.getData
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.confirm_status.view.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -27,23 +31,23 @@ class MainActivity : AppCompatActivity() {
 
         btnlogout.setOnClickListener {
 
-            SharedPrefManager.getInstance(this).clear()
-
-            var intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
-            finish()
-
+            confirmExitDialog()
+//            SharedPrefManager.getInstance(this).clear()
+//
+//            var intent = Intent(this, MainActivity::class.java)
+//            startActivity(intent)
+//            finish()
         }
 
         init()
 
         Handler().postDelayed({
             init()
-        },300)
+        }, 300)
 
 
         refresh.setOnClickListener {
-                init()
+            init()
 //            Log.d("1212", "CACA")
         }
 
@@ -52,7 +56,7 @@ class MainActivity : AppCompatActivity() {
         btn_check.setOnClickListener {
             var intent = Intent(this, ReportActivity::class.java)
             startActivity(intent)
-            finish()
+
 
         }
 
@@ -60,7 +64,7 @@ class MainActivity : AppCompatActivity() {
 
             var intent = Intent(this, TransferActivity::class.java)
             startActivity(intent)
-            finish()
+
 
         }
 
@@ -68,17 +72,17 @@ class MainActivity : AppCompatActivity() {
 
             var intent = Intent(this, PayQrcodeActivity::class.java)
             startActivity(intent)
-            finish()
+
 
         }
 
 
-
     }
+
     override fun onStart() {
         super.onStart()
 
-        if(!SharedPrefManager.getInstance(this).isLoggedIn){
+        if (!SharedPrefManager.getInstance(this).isLoggedIn) {
             val intent = Intent(applicationContext, LoginActivity::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
 
@@ -86,7 +90,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun init(){
+    private fun init() {
         val sharedPrefManager = getSharedPreferences("my_shared_preff", Context.MODE_PRIVATE)
 
         val walletid = sharedPrefManager.getString("wallet_id", "")
@@ -95,6 +99,13 @@ class MainActivity : AppCompatActivity() {
         Balance.text = balance.toString()
         val name = sharedPrefManager.getString("name", "")
         acccount.text = walletid + " - " + name.toString()
+
+        val status2 = sharedPrefManager.getString("status2", "")
+
+
+        if (status2.equals("off")) {
+            confirmDialog()
+        }
 
 
         RetrofitClient.instance.getDataUser(walletid!!)
@@ -131,11 +142,71 @@ class MainActivity : AppCompatActivity() {
         }
 
         this.doubleBackToExitPressedOnce = true
-        Toast.makeText(this, "กรุณากดอีกครั้งเพื่อออกแอปพลิเคชั่น", Toast.LENGTH_SHORT).show()
+        Toast.makeText(this, "กรุณากดอีกครั้งเพื่อออกแอปพลิเคชัน", Toast.LENGTH_SHORT).show()
 
         Handler().postDelayed(Runnable { doubleBackToExitPressedOnce = false }, 2000)
     }
 
+    private fun confirmDialog() {
+        val inflater = LayoutInflater.from(this)
+        val subView = inflater.inflate(R.layout.confirm_status, null)
 
+//        val ndely = subView.findViewById<Button>(R.id.btnexit)
+//        val ndeln = subView.findViewById<Button>(R.id.btnnoexit)
+
+        subView.textDialog.text = "บัญชีผู้ใช้นี้ได้ปิดการใช้งานอยู่โปรดติดต่อเจ้าหน้าที่"
+
+        val builder = AlertDialog.Builder(this!!)
+        builder.setView(subView)
+        val dialog = builder.create()
+        dialog.setCancelable(false)
+        dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
+
+//        ndely.setOnClickListener {
+//            dialog.dismiss()
+//            signOut()
+//            Toast.makeText(this, "ออกจากระบบเรียบร้อยแล้ว", Toast.LENGTH_SHORT).show()
+//
+//        }
+//        ndeln.setOnClickListener {
+//            dialog.cancel()
+//            hideDialog()
+        dialog.show()
+    }
+
+    private fun confirmExitDialog() {
+        val inflater = LayoutInflater.from(this)
+        val subView = inflater.inflate(R.layout.confirm_exit, null)
+
+        val ndely = subView.findViewById<Button>(R.id.btnexit)
+        val ndeln = subView.findViewById<Button>(R.id.btnnoexit)
+
+        subView.textDialog.text = "บัญชีผู้ใช้นี้ได้ปิดการใช้งานอยู่โปรดติดต่อเจ้าหน้าที่"
+
+        val builder = AlertDialog.Builder(this!!)
+        builder.setView(subView)
+        val dialog = builder.create()
+        dialog.setCancelable(false)
+        dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
+
+        ndely.setOnClickListener {
+            dialog.dismiss()
+
+            SharedPrefManager.getInstance(this).clear()
+
+            var intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+            finish()
+
+            Toast.makeText(this, "ออกจากระบบเรียบร้อยแล้ว", Toast.LENGTH_SHORT).show()
+
+        }
+        ndeln.setOnClickListener {
+            dialog.cancel()
+//            hideDialog()
+        }
+        dialog.show()
+
+    }
 }
 

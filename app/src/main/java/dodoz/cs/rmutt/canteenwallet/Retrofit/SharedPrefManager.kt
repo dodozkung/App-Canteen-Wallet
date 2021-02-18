@@ -28,6 +28,7 @@ class SharedPrefManager private constructor(private val mCtx: Context) {
         editor.putString("passconfirm", user.passconfirm)
         editor.putString("phone", user.phone)
         editor.putString("status", user.status)
+        editor.putString("status2", user.status2)
 
         editor.apply()
 

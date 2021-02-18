@@ -24,6 +24,8 @@ class TransferActivity : BaseActivity() {
 
         val sharedPrefManager = getSharedPreferences("my_shared_preff", Context.MODE_PRIVATE)
 
+        val id = sharedPrefManager.getString("wallet_id", "")
+
         val money = sharedPrefManager.getFloat("balance", 0.0f)
 
 
@@ -42,47 +44,57 @@ class TransferActivity : BaseActivity() {
                 return@setOnClickListener
             }
 
-            if (money!!.toFloat() >= amout.toFloat()){
+            if (id != walletid){
+                if (money!!.toFloat() >= amout.toFloat()){
 
-                RetrofitClient.instance.SeachUser(walletid.toInt())
-                    .enqueue(object : Callback<getSearch> {
-                        override fun onFailure(call: Call<getSearch>, t: Throwable) {
-                            Toast.makeText(applicationContext, t.message, Toast.LENGTH_LONG).show()
-                        }
+                    RetrofitClient.instance.SeachUser(walletid.toInt())
+                        .enqueue(object : Callback<getSearch> {
+                            override fun onFailure(call: Call<getSearch>, t: Throwable) {
+                                Toast.makeText(applicationContext, t.message, Toast.LENGTH_LONG).show()
+                            }
 
-                        override fun onResponse(call: Call<getSearch>, response: Response<getSearch>) {
-                            if (response.body()?.error!!) {
+                            override fun onResponse(call: Call<getSearch>, response: Response<getSearch>) {
+                                if (response.body()?.error!!) {
 
-                                SharedPrefManager.getInstance(applicationContext).getSearch(response.body()?.user!!)
+                                    SharedPrefManager.getInstance(applicationContext).getSearch(response.body()?.user!!)
 
-                                val intent = Intent(applicationContext, TransferConfirmActivity::class.java)
-                                intent.putExtra("walletid", walletid)
-                                intent.putExtra("amout", amout)
-                                startActivity(intent)
+                                    val intent = Intent(applicationContext, TransferConfirmActivity::class.java)
+                                    intent.putExtra("walletid", walletid)
+                                    intent.putExtra("amout", amout)
+                                    startActivity(intent)
 
-                            } else {
+                                } else {
 //                        Toast.makeText(
 //                            applicationContext,
 //                            response.body()?.message,
 //                            Toast.LENGTH_LONG
 //                        ).show()
-                                Toast.makeText(
-                                    applicationContext,
-                                    "ไม่เจอข้อมูล",
-                                    Toast.LENGTH_LONG
-                                ).show()
+                                    Toast.makeText(
+                                        applicationContext,
+                                        "ไม่เจอข้อมูล",
+                                        Toast.LENGTH_LONG
+                                    ).show()
+                                }
+
                             }
+                        })
 
-                        }
-                    })
-
+                }else {
+                    Toast.makeText(
+                        applicationContext,
+                        "จำนวนเงินไม่เพียงพอ",
+                        Toast.LENGTH_LONG
+                    ).show()
+                }
             }else {
                 Toast.makeText(
                     applicationContext,
-                    "จำนวนเงินไม่เพียงพอ",
+                    "ไม่สามารถโอนเงินให้บัญชีตนเองได้",
                     Toast.LENGTH_LONG
                 ).show()
             }
+
+
 
 
 
