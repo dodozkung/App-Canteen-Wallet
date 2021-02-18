@@ -122,11 +122,11 @@ class RegisterActivity : BaseActivity() {
                 name,
                 address,
                 idcard,
-                passconfirm,
+                pw,
                 phone
             )
                 .enqueue(object : Callback<DefaultResponse> {
-                    override fun onFailure(call: Call<DefaultResponse>, t: Throwable) {
+                    override fun onFailure(call: Call<DefaultResponse>, t: Throwable,) {
                         Toast.makeText(applicationContext, t.message, Toast.LENGTH_LONG).show()
                     }
 
@@ -134,11 +134,33 @@ class RegisterActivity : BaseActivity() {
                         call: Call<DefaultResponse>,
                         response: Response<DefaultResponse>
                     ) {
+//                        Toast.makeText(
+//                            applicationContext,
+//                            response.body()?.message,
+//                            Toast.LENGTH_LONG
+//                        ).show()
+                        if (!response.body()?.error!!) {
+
+//                            Toast.makeText(
+//                            applicationContext,
+//                            response.body()?.message,
+//                            Toast.LENGTH_LONG
+//                        ).show()
+                            Toast.makeText(
+                                applicationContext,
+                                "สมัครสมาชิกสำเร็จ",
+                                Toast.LENGTH_LONG
+                            ).show()
+
+
+                        }else if (response.body()?.error!!) {
                         Toast.makeText(
                             applicationContext,
-                            response.body()?.message,
+                            "สมัครสมาชิกไม่สำเร็จโปรดลองใหม่อีกครั้ง",
+//                            response.body()?.message,
                             Toast.LENGTH_LONG
                         ).show()
+                        }
                     }
 
                 })

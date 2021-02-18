@@ -3,10 +3,12 @@ package dodoz.cs.rmutt.canteenwallet.model
 class Data {
 }
 
-class user(
-    val id: String? = "",
-    val transfer:  String? = "",
-    val amount:  String? = "",
-    val title: String? = ""
-
-)
+//data class userRecy(
+//
+//    val Date :  String? = "",
+//    val Typetransfer:  String? = "",
+//    val Amount: String? = "",
+//    val EndAccID: String? = ""
+//
+//
+//)

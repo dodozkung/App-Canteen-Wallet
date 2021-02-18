@@ -18,7 +18,7 @@ interface Api {
         @Field("name") name: String,
         @Field("address") address: String,
         @Field("idcard") idcard: String,
-        @Field("passconfirm") passconfirm: String,
+        @Field("passconfirm") pw : String,
         @Field("phone") phone: String,
     ):Call<DefaultResponse>
 
@@ -55,8 +55,11 @@ interface Api {
         @Field("Amout") Amout: Float
     ):Call<TransferA>
 
-    @GET ("Report")
+    @POST ("Reportip")
     @FormUrlEncoded
-    fun Report(@Field("wallet_id") wallet_id: String):Call<Data>
+    fun Report(@Field("wallet_id") wallet_id: String):Call<List<userRecy>>
+
+    @GET("Report")
+    fun fetchAllUsers():Call<List<userRecy>>
 
 }

@@ -8,6 +8,7 @@
     tools:context="dodoz.cs.rmutt.canteenwallet.Transfer.TransferConfirmActivity"
     >
 
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -43,10 +44,11 @@
                 android:layout_height="50dp"
                 android:layout_marginHorizontal="40dp"
                 android:layout_marginTop="10dp"
-                android:text="0000"
+                android:hint="000000"
                 android:background="@drawable/frametext"
                 android:paddingHorizontal="20dp"
                 android:textColor="@color/Rmutt"
+                android:maxLength="6"
                 android:textColorHint="@color/Rmutt"
                 android:textStyle="bold"
                 android:enabled="false"/>

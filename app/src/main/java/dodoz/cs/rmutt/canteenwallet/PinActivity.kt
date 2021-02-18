@@ -27,7 +27,7 @@ class PinActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_pin)
 
-        init()
+//        init()
 
 //        val EndAcc = intent.getStringExtra("walletid2")
 //        Toast.makeText(this, EndAcc , Toast.LENGTH_LONG).show()
@@ -106,7 +106,7 @@ class PinActivity : AppCompatActivity() {
             } else {
                 Toast.makeText(
                     this,
-                    "รหัสไม่ถูกต้อง",
+                    "รหัสไม่ถูกต้องกรุณาลองใหม่",
                     Toast.LENGTH_SHORT
                 ).show()
             }
@@ -117,17 +117,17 @@ class PinActivity : AppCompatActivity() {
 
     }
 
-    private fun init(){
+//    private fun init(){
+//
+//        val sharedPrefManager = getSharedPreferences("my_shared_preff", Context.MODE_PRIVATE)
+//
+//        val walletid = sharedPrefManager.getString("wallet_id", "")
+//        val passconfirm =  sharedPrefManager.getString("passconfirm", "")
+//        val EndAcc = intent.getStringExtra("walletid2")
+//        val amout = intent.getStringExtra("amout")
 
-        val sharedPrefManager = getSharedPreferences("my_shared_preff", Context.MODE_PRIVATE)
-
-        val walletid = sharedPrefManager.getString("wallet_id", "")
-        val passconfirm =  sharedPrefManager.getString("passconfirm", "")
-        val EndAcc = intent.getStringExtra("walletid2")
-        val amout = intent.getStringExtra("amout")
-
-        Toast.makeText(this, walletid +"-"+ passconfirm + "-" + amout + "-" + EndAcc , Toast.LENGTH_LONG).show()
-    }
+//        Toast.makeText(this, walletid +"-"+ passconfirm + "-" + amout + "-" + EndAcc , Toast.LENGTH_LONG).show()
+//    }
 
 //    private fun TransferTr(){
 //

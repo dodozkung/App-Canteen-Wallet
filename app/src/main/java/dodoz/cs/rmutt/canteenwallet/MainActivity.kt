@@ -50,7 +50,7 @@ class MainActivity : AppCompatActivity() {
 
 
         btn_check.setOnClickListener {
-            var intent = Intent(this, TransferActivity::class.java)
+            var intent = Intent(this, ReportActivity::class.java)
             startActivity(intent)
             finish()
 
@@ -111,11 +111,12 @@ class MainActivity : AppCompatActivity() {
 
 
                     } else {
-                        Toast.makeText(
-                            applicationContext,
-                            response.body()?.message,
-                            Toast.LENGTH_LONG
-                        ).show()
+//                        Toast.makeText(
+//                            applicationContext,
+//                            "มาจากตรงนี้สินะ",
+////                            response.body()?.message,
+//                            Toast.LENGTH_LONG
+//                        ).show()
                     }
 
                 }

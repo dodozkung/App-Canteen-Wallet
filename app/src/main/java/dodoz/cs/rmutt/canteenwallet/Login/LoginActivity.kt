@@ -68,7 +68,8 @@ class LoginActivity : BaseActivity() {
 
 
                         }else{
-                            Toast.makeText(applicationContext, response.body()?.message, Toast.LENGTH_LONG).show()
+//                            Toast.makeText(applicationContext, response.body()?.message, Toast.LENGTH_LONG).show()
+                            Toast.makeText(applicationContext, "ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง", Toast.LENGTH_LONG).show()
                         }
 
                     }

@@ -7,6 +7,8 @@
     android:background="@drawable/bg"
     tools:context="dodoz.cs.rmutt.canteenwallet.PayQrcode.PayQrcodeCheckActivity">
 
+
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -43,9 +45,8 @@
                 android:layout_marginHorizontal="40dp"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/frametext"
-                android:focusable="false"
-                android:text=""
                 android:paddingHorizontal="20dp"
+                android:textSize="20dp"
                 android:textColor="@color/Rmutt"
                 android:textColorHint="@color/Rmutt" />
 
@@ -78,6 +79,7 @@
                 android:cursorVisible="true"
                 android:inputType="numberDecimal"
                 android:textColor="@color/Rmutt"
+                android:textStyle="bold"
                 android:textColorHint="@color/Rmutt" />
 
         </LinearLayout>

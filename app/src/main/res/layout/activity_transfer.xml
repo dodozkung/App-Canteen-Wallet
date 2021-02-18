@@ -8,6 +8,7 @@
     tools:context="dodoz.cs.rmutt.canteenwallet.Transfer.TransferActivity">
 
     <LinearLayout
+        android:layout_below="@+id/ptoolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">

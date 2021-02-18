@@ -14,8 +14,8 @@ object RetrofitClient {
         Base64.NO_WRAP
     )
 
-//    private const val BASE_URL = "http://nackmine.ddns.net/apiddz/myapi/public/"
-    private const val BASE_URL = "http://172.20.10.3/myapi/public/"
+    private const val BASE_URL = "http://nackmine.ddns.net/apiddz/myapi/public/"
+//    private const val BASE_URL = "http://172.20.10.3/myapi/public/"
 
     var gson = GsonBuilder()
         .setLenient()

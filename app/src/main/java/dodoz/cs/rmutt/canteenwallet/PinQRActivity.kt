@@ -106,7 +106,7 @@ class PinQRActivity : AppCompatActivity() {
             } else {
                 Toast.makeText(
                     this,
-                    "รหัสไม่ถูกต้อง",
+                    "รหัสไม่ถูกต้องกรุณาลองใหม่",
                     Toast.LENGTH_SHORT
                 ).show()
             }

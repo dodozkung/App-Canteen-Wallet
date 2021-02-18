@@ -8,7 +8,46 @@
     tools:context=".PinActivity"
     >
 
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/ptoolbar"
+        android:layout_width="match_parent"
+        android:layout_height="75dp"
+        android:background="#181a1f"
+        app:titleTextColor="@android:color/white">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                app:navigationIcon="@drawable/ic_back"
+                app:title=" "
+
+                />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/rmutt" />
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
     <ScrollView
+        android:layout_below="@id/ptoolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true">
@@ -19,20 +58,7 @@
             android:layout_centerInParent="true"
             android:orientation="vertical">
 
-            <LinearLayout
-                android:id="@+id/logopin"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="30dp"
-                android:gravity="center">
 
-                <ImageView
-                    android:layout_width="100dp"
-                    android:layout_height="120dp"
-                    android:src="@drawable/rmutt" />
-
-
-            </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/txt1"
@@ -86,6 +112,7 @@
                     android:id="@+id/pinview1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
                     app:cursorVisible="true"
                     app:forceKeyboard="true"
                     app:hint=""
