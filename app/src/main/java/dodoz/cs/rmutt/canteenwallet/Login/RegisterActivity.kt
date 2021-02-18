@@ -53,6 +53,11 @@ class RegisterActivity : BaseActivity() {
 //                }
 //            }
 //        }
+        toolbar.setOnClickListener {
+            val intent = Intent(this, LoginActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
 
         btnreturnlogin.setOnClickListener {
             val intent = Intent(this, LoginActivity::class.java)

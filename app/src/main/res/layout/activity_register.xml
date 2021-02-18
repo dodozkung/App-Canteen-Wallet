@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,7 +7,47 @@
     android:background="@drawable/bg"
     tools:context="dodoz.cs.rmutt.canteenwallet.Login.RegisterActivity">
 
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/ptoolbar"
+        android:layout_width="match_parent"
+        android:layout_height="75dp"
+        android:background="#181a1f"
+        app:titleTextColor="@android:color/white">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                app:navigationIcon="@drawable/ic_back"
+                app:title=" "
+
+                />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <ImageView
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/rmutt" />
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
     <ScrollView
+        android:layout_below="@id/ptoolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true">
@@ -24,7 +64,6 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="60dp"
                 android:layout_marginBottom="20dp"
                 android:gravity="center">
 
@@ -427,4 +466,4 @@
         </LinearLayout>
     </ScrollView>
 
-</LinearLayout>
+</RelativeLayout>

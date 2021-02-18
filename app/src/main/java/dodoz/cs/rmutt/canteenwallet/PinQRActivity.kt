@@ -10,11 +10,14 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import com.chaos.view.PinView
 import com.goodiebag.pinview.Pinview
+import dodoz.cs.rmutt.canteenwallet.Login.LoginActivity
 import dodoz.cs.rmutt.canteenwallet.PayQrcode.PayQrcodeActivity
 import dodoz.cs.rmutt.canteenwallet.Retrofit.RetrofitClient
 import dodoz.cs.rmutt.canteenwallet.Retrofit.SharedPrefManager
 import dodoz.cs.rmutt.canteenwallet.model.*
 import kotlinx.android.synthetic.main.activity_pin.*
+import kotlinx.android.synthetic.main.activity_pin.toolbar
+import kotlinx.android.synthetic.main.activity_register.*
 import kotlinx.android.synthetic.main.activity_transfer_confirm.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -27,10 +30,17 @@ class PinQRActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_pin)
 
-        init()
+//        init()
 
 //        val EndAcc = intent.getStringExtra("walletid2")
 //        Toast.makeText(this, EndAcc , Toast.LENGTH_LONG).show()
+
+        toolbar.setOnClickListener {
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
+
         val sharedPrefManager = getSharedPreferences("my_shared_preff", Context.MODE_PRIVATE)
 
         val walletid = sharedPrefManager.getString("wallet_id", "")
@@ -117,17 +127,17 @@ class PinQRActivity : AppCompatActivity() {
 
     }
 
-    private fun init(){
-
-        val sharedPrefManager = getSharedPreferences("my_shared_preff", Context.MODE_PRIVATE)
-
-        val walletid = sharedPrefManager.getString("wallet_id", "")
-        val passconfirm =  sharedPrefManager.getString("passconfirm", "")
-        val EndAcc = intent.getStringExtra("walletid2")
-        val amout = intent.getStringExtra("amout")
-
-        Toast.makeText(this, walletid.toString() +"-"+ passconfirm + "-" + amout + "-" + EndAcc , Toast.LENGTH_LONG).show()
-    }
+//    private fun init(){
+//
+//        val sharedPrefManager = getSharedPreferences("my_shared_preff", Context.MODE_PRIVATE)
+//
+//        val walletid = sharedPrefManager.getString("wallet_id", "")
+//        val passconfirm =  sharedPrefManager.getString("passconfirm", "")
+//        val EndAcc = intent.getStringExtra("walletid2")
+//        val amout = intent.getStringExtra("amout")
+//
+//        Toast.makeText(this, walletid.toString() +"-"+ passconfirm + "-" + amout + "-" + EndAcc , Toast.LENGTH_LONG).show()
+//    }
 
 //    private fun TransferTr(){
 //

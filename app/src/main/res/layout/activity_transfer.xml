@@ -59,7 +59,7 @@
                 android:inputType="number"
                 android:paddingHorizontal="20dp"
                 android:textSize="20dp"
-
+                android:maxLength="6"
                 android:textColor="@color/Rmutt"
                 android:hint="กรุณากรอกบัญชี"
                 android:textColorHint="@color/Rmutt"
