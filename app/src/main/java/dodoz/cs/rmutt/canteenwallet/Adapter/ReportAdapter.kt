@@ -1,15 +1,20 @@
 package dodoz.cs.rmutt.canteenwallet.Adapter
 
 import android.content.Context
+import android.os.Build
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.RecyclerView
 import dodoz.cs.rmutt.canteenwallet.R
 import dodoz.cs.rmutt.canteenwallet.model.userRecy
 import kotlinx.android.synthetic.main.list_report.view.*
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
+import java.util.*
 
 
 class ReportAdapter(private val users: List<userRecy>) : RecyclerView.Adapter<ReportAdapter.ViewHolder>() {
@@ -21,16 +26,24 @@ class ReportAdapter(private val users: List<userRecy>) : RecyclerView.Adapter<Re
 
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
 
         val user = users[position]
 
+
+
+
         val a1 = user.Date!!.split(" ").toTypedArray()
 
         val a2 = a1[0].split("-").toTypedArray()
+        val a21 = a2[0].toInt()+543
 
-        val a3 = a2[2] + "/" + a2[1] + "/" + a2[0] + " " + a1[1]
+        val a3 = a2[2] + "/" + a2[1] + "/" + a21 + " " + a1[1]
+
+
+
 
         holder.Date.text = a3
 //        holder.Date.text = user.Date
@@ -38,7 +51,6 @@ class ReportAdapter(private val users: List<userRecy>) : RecyclerView.Adapter<Re
 
         if(user.Typetransfer == "transfer"){
             holder.Typetransfer.text = "โอน"
-
         }else if (user.Typetransfer == "pay"){
             holder.Typetransfer.text = "จ่าย"
         }else if (user.Typetransfer == "deposit"){

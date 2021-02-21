@@ -63,7 +63,13 @@ interface Api {
     @FormUrlEncoded
     fun Reportdw(@Field("wallet_id") EndAccID: String):Call<List<userRecy>>
 
-    @GET("Report")
-    fun fetchAllUsers():Call<List<userRecy>>
+    @POST ("Reporttest")
+    @FormUrlEncoded
+    fun Reporttest(
+        @Field("wallet_id") wallet_id: String,
+        @Field("EndAccID") EndAccID: String
+    ):Call<List<userRecy>>
+
+
 
 }

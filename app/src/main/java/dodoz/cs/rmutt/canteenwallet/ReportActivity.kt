@@ -49,10 +49,10 @@ class ReportActivity : AppCompatActivity() {
         val sharedPrefManager = getSharedPreferences("my_shared_preff", Context.MODE_PRIVATE)
 
         val walletid = sharedPrefManager.getString("wallet_id", "")
-
+        val EndAccID = sharedPrefManager.getString("wallet_id", "")
 //        Toast.makeText(applicationContext, walletid, Toast.LENGTH_LONG).show()
 
-        RetrofitClient.instance.Report(walletid!!)
+        RetrofitClient.instance.Reporttest(walletid!!,EndAccID!!)
             .enqueue(object : Callback<List<userRecy>> {
                 override fun onResponse(
                     call: Call<List<userRecy>>,

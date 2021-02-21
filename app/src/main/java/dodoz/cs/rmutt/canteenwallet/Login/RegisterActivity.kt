@@ -2,37 +2,24 @@ package dodoz.cs.rmutt.canteenwallet.Login
 
 import android.content.Intent
 import android.os.Bundle
-import android.os.Handler
+import android.view.LayoutInflater
+import android.widget.Button
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 
 import dodoz.cs.rmutt.canteenwallet.*
-import dodoz.cs.rmutt.canteenwallet.Retrofit.Api
 import dodoz.cs.rmutt.canteenwallet.Retrofit.RetrofitClient
 import dodoz.cs.rmutt.canteenwallet.Retrofit.SharedPrefManager
 import dodoz.cs.rmutt.canteenwallet.model.DefaultResponse
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.disposables.CompositeDisposable
-import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_register.*
 import kotlinx.android.synthetic.main.activity_register.edtpass
+import kotlinx.android.synthetic.main.confirm_status.view.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import java.util.*
 
 class RegisterActivity : BaseActivity() {
-
-    private var dateTime = ""
-    lateinit var myAPI: Api
-    var compositeDisposable = CompositeDisposable()
-
-
-    val myCalendar = Calendar.getInstance()
-    val year = myCalendar.get(Calendar.YEAR)
-    val month = myCalendar.get(Calendar.MONTH)
-    val day = myCalendar.get(Calendar.DAY_OF_MONTH)
-
-    var getSex: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -54,12 +41,6 @@ class RegisterActivity : BaseActivity() {
 //            }
 //        }
         toolbar.setOnClickListener {
-            val intent = Intent(this, LoginActivity::class.java)
-            startActivity(intent)
-            finish()
-        }
-
-        btnreturnlogin.setOnClickListener {
             val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
         }
@@ -106,30 +87,88 @@ class RegisterActivity : BaseActivity() {
 
                 return@setOnClickListener
             }
-            if (idcard.isEmpty()) {
-                edtidcard.error = "กรุณากรอกรหัสนักศึกษา"
+            else if (idcard.isEmpty() || idcard.length < 13) {
 
+                edtidcard.error = "บัตรประชาชนไม่ครบ13หลัก"
                 return@setOnClickListener
+
             } else if (pw.isEmpty() || pw.length < 6) {
                 edtpw.error = "กรุณากรอกรหัสธุรกรรม 6 ตัว"
 
                 return@setOnClickListener
-            }
-            if (phone.isEmpty() || phone.length < 10) {
+            }else if (phone.isEmpty() || phone.length < 10) {
                 edtphone.error = "กรุณากรอกเบอร์โทรศัพท์ 10 หลัก"
 
                 return@setOnClickListener
+            }else {
+                confirmDialog()
             }
 
-            RetrofitClient.instance.createuser(
-                username,
-                password,
-                name,
-                address,
-                idcard,
-                pw,
-                phone
-            )
+
+
+
+        }
+
+
+    }
+
+    override fun onStart() {
+        super.onStart()
+
+        if (SharedPrefManager.getInstance(this).isLoggedIn) {
+            val intent = Intent(applicationContext, MainActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+
+            startActivity(intent)
+        }
+    }
+
+//    private fun isValidThaiId(): Boolean {
+//        val idcard = edtidcard.text.toString().trim()
+//        this.let {
+//            return if (idcard.length != 13) {
+//                false
+//            } else {
+//                val digits = ("0${idcard.toInt()}").substring(0, 13).map { idcard.toInt() }
+//                val lastDigit = idcard.substring(12, 13)
+//                val sum = digits.reduceIndexed { index, total, next ->
+//                    total + (next * (13 + 1 - index))
+//                }
+//                val checkDigit = 11 - (sum % 11)
+//
+//                (checkDigit.toString()[0].toString() == lastDigit)
+//
+//            }
+//        }
+//    }
+
+    private fun confirmDialog() {
+        val inflater = LayoutInflater.from(this)
+        val subView = inflater.inflate(R.layout.confirm_exit, null)
+
+        val ndely = subView.findViewById<Button>(R.id.btnexit)
+        val ndeln = subView.findViewById<Button>(R.id.btnnoexit)
+
+        subView.textDialog.text = "ยืนยันการสมัครสมาชิก"
+
+        val builder = AlertDialog.Builder(this!!)
+        builder.setView(subView)
+        val dialog = builder.create()
+        dialog.setCancelable(false)
+        dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
+
+        ndely.setOnClickListener {
+            dialog.dismiss()
+
+            val name = edtname.text.toString().trim()
+            val idcard = edtidcard.text.toString().trim()
+            val username = edtusername.text.toString().trim()
+            val phone = edtphone.text.toString().trim()
+            val address = edtaddress.text.toString().trim()
+            val password = edtpass.text.toString().trim()
+            val pw = edtpw.text.toString().trim()
+
+            RetrofitClient.instance.createuser(username, password, name, address, idcard,pw, phone)
                 .enqueue(object : Callback<DefaultResponse> {
                     override fun onFailure(call: Call<DefaultResponse>, t: Throwable,) {
                         Toast.makeText(applicationContext, t.message, Toast.LENGTH_LONG).show()
@@ -157,14 +196,19 @@ class RegisterActivity : BaseActivity() {
                                 Toast.LENGTH_LONG
                             ).show()
 
+                            var intent = Intent(applicationContext, LoginActivity::class.java)
+                            startActivity(intent)
+                            finish()
+
+
 
                         }else if (response.body()?.error!!) {
-                        Toast.makeText(
-                            applicationContext,
-                            "สมัครสมาชิกไม่สำเร็จโปรดลองใหม่อีกครั้ง",
+                            Toast.makeText(
+                                applicationContext,
+                                "สมัครสมาชิกไม่สำเร็จโปรดลองใหม่อีกครั้ง",
 //                            response.body()?.message,
-                            Toast.LENGTH_LONG
-                        ).show()
+                                Toast.LENGTH_LONG
+                            ).show()
                         }
                     }
 
@@ -172,39 +216,35 @@ class RegisterActivity : BaseActivity() {
 
 
         }
-
-
-    }
-
-    override fun onStart() {
-        super.onStart()
-
-        if (SharedPrefManager.getInstance(this).isLoggedIn) {
-            val intent = Intent(applicationContext, MainActivity::class.java)
-            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-
-            startActivity(intent)
+        ndeln.setOnClickListener {
+            dialog.cancel()
+//            hideDialog()
         }
+        dialog.show()
+
     }
 
-    fun String.isValidThaiId(): Boolean {
-        this.let {
-            return if (it.length != 13) {
-                false
-            } else {
-                val digits = ("0$it").substring(0, 13).map { it.toString().toInt() }
-                val lastDigit = it.substring(12, 13)
-                val sum = digits.reduceIndexed { index, total, next ->
-                    total + (next * (13 + 1 - index))
-                }
-                val checkDigit = 11 - (sum % 11)
-
-                (checkDigit.toString()[0].toString() == lastDigit)
-            }
-        }
-    }
-
-
+//    private fun valid_citizen_id(): Boolean {
+//        if (edtidcard.length() != 13) {
+//            return false
+//        }
+//        val rev = edtidcard.text.reversed()
+//        val total = 0
+//        for (i in 1..13) {
+//            val mul = i + 1
+//            val count = rev[i].toInt()*mul
+//                val total = total + count
+//        }
+//        val mod = total % 11
+//        val sub = 11 - mod
+//        val check_digit = sub % 10
+//        if (rev[0] == check_digit) {
+//            return true
+//        } else {
+//            return false
+//        }
+//
+//    }
 
 
 

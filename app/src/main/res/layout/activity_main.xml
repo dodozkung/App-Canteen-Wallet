@@ -113,9 +113,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="100dp"
                 android:gravity="center_horizontal"
-                android:text="0.000"
+                android:text="000.00"
                 android:textColor="@color/black"
-                android:textSize="35dp"
+                android:textSize="40dp"
                 android:textStyle="bold" />
 
 

@@ -60,17 +60,30 @@ class LoginActivity : BaseActivity() {
                         if(!response.body()?.error!!){
 
                             SharedPrefManager.getInstance(applicationContext).saveUser(response.body()?.user!!)
+//
+//                            val checkstatus = response.body()?.user!!.status
+//                            val checkstatus2 = response.body()?.user!!.status2
+//                            if (checkstatus == "user") {
+//                                if (checkstatus2 == "on") {
+                                    val intent = Intent(applicationContext, MainActivity::class.java)
+                                    intent.flags =
+                                        Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
 
-                            val intent = Intent(applicationContext, MainActivity::class.java)
-                            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-
-                            startActivity(intent)
-
+                                    startActivity(intent)
+//                                }
+//
+//                            }else {
+//                                Toast.makeText(applicationContext, "ชื่อผู้ใช้นี้ไม่สามารถใช้งานแอปพลิเคชันได้", Toast.LENGTH_LONG).show()
+//                            }
 
                         }else{
 //                            Toast.makeText(applicationContext, response.body()?.message, Toast.LENGTH_LONG).show()
                             Toast.makeText(applicationContext, "ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง", Toast.LENGTH_LONG).show()
                         }
+
+
+
+
 
                     }
                 })
@@ -146,4 +159,5 @@ class LoginActivity : BaseActivity() {
             startActivity(intent)
         }
     }
+
 }

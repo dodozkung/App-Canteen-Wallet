@@ -4,7 +4,6 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
-import android.util.Log
 import android.view.LayoutInflater
 import android.widget.Button
 import android.widget.Toast
@@ -147,6 +146,7 @@ class MainActivity : AppCompatActivity() {
         Handler().postDelayed(Runnable { doubleBackToExitPressedOnce = false }, 2000)
     }
 
+
     private fun confirmDialog() {
         val inflater = LayoutInflater.from(this)
         val subView = inflater.inflate(R.layout.confirm_status, null)
@@ -181,7 +181,7 @@ class MainActivity : AppCompatActivity() {
         val ndely = subView.findViewById<Button>(R.id.btnexit)
         val ndeln = subView.findViewById<Button>(R.id.btnnoexit)
 
-        subView.textDialog.text = "บัญชีผู้ใช้นี้ได้ปิดการใช้งานอยู่โปรดติดต่อเจ้าหน้าที่"
+        subView.textDialog.text =  "ยืนยันการออกจากระบบ ?"
 
         val builder = AlertDialog.Builder(this!!)
         builder.setView(subView)
@@ -208,5 +208,11 @@ class MainActivity : AppCompatActivity() {
         dialog.show()
 
     }
-}
+
+//    public override fun onResume() {
+//        super.onResume()
+//        init()
+//    }
+
+    }
 

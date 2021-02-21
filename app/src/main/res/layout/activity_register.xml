@@ -449,16 +449,6 @@
                     android:textColor="@color/white"
                     android:textSize="15dp" />
 
-                <Button
-                    android:id="@+id/btnreturnlogin"
-                    android:layout_width="250dp"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="40dp"
-                    android:layout_marginRight="40dp"
-                    android:background="@drawable/btnlogin"
-                    android:text="เข้าสู่ระบบ"
-                    android:textColor="@color/white"
-                    android:textSize="15dp" />
 
             </LinearLayout>
 
