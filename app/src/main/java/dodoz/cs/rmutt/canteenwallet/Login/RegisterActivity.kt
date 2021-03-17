@@ -87,22 +87,42 @@ class RegisterActivity : BaseActivity() {
 
                 return@setOnClickListener
             }
-            else if (idcard.isEmpty() || idcard.length < 13) {
+            else if (!idcard.isEmpty() || idcard.length == 13) {
+                if (isValidThaiId(idcard) == true){
+                    if (pw.isEmpty() || pw.length < 6) {
+                        edtpw.error = "กรุณากรอกรหัสธุรกรรม 6 ตัว"
 
-                edtidcard.error = "บัตรประชาชนไม่ครบ13หลัก"
+                        return@setOnClickListener
+                    }else if (phone.isEmpty() || phone.length < 10) {
+                        edtphone.error = "กรุณากรอกเบอร์โทรศัพท์ 10 หลัก"
+
+                        return@setOnClickListener
+                    }else {
+                        confirmDialog()
+                    }
+                }else
+                edtidcard.error = "บัตรประชาชนไม่ครบ13หลักหรือไม่ถูกต้อง"
                 return@setOnClickListener
 
-            } else if (pw.isEmpty() || pw.length < 6) {
-                edtpw.error = "กรุณากรอกรหัสธุรกรรม 6 ตัว"
-
-                return@setOnClickListener
-            }else if (phone.isEmpty() || phone.length < 10) {
-                edtphone.error = "กรุณากรอกเบอร์โทรศัพท์ 10 หลัก"
-
-                return@setOnClickListener
-            }else {
-                confirmDialog()
             }
+
+//            else if (!IDCardFormat.isValidThaiId(idcard) &&  idcard != "") {
+//                edtidcard!!.error = "รหัสบัตรประชาชนผิดพลาด โปรดลองอีกครั้ง"
+////                edtidcard!!.requestFocus()
+//                return@setOnClickListener
+//            }
+
+//            else if (pw.isEmpty() || pw.length < 6) {
+//                edtpw.error = "กรุณากรอกรหัสธุรกรรม 6 ตัว"
+//
+//                return@setOnClickListener
+//            }else if (phone.isEmpty() || phone.length < 10) {
+//                edtphone.error = "กรุณากรอกเบอร์โทรศัพท์ 10 หลัก"
+//
+//                return@setOnClickListener
+//            }else {
+//                confirmDialog()
+//            }
 
 
 
@@ -141,6 +161,35 @@ class RegisterActivity : BaseActivity() {
 //            }
 //        }
 //    }
+
+
+    private fun isValidThaiId(idcard : String): Boolean {
+        //val testnumber = "1179900359710" //
+        this.let {
+            return if (idcard.length != 13 || idcard.isEmpty()) {
+                false
+            } else {
+                val list = mutableListOf<Int>()
+                val index = 13
+                val digits = idcard.substring(0, 12)
+                val lastDigit = idcard.substring(12, 13)
+                val numbers = digits.map { it.toString().toInt() }
+                //list.addAll(listOf(1, 2, 3))
+                //println(list) // [1, 2, 3]
+                for (i in numbers.indices) {
+                    val sumtest = (numbers[i] * (index - i))
+                    list.add(sumtest)
+                }
+                val finaldigit = (11 - ((list.sumOf { it }) % 11)) % 10
+
+                if (lastDigit.toInt() != finaldigit || idcard.length != 13) {
+                    return false
+                } else {
+                    return true
+                }
+            }
+        }
+    }
 
     private fun confirmDialog() {
         val inflater = LayoutInflater.from(this)
@@ -205,7 +254,7 @@ class RegisterActivity : BaseActivity() {
                         }else if (response.body()?.error!!) {
                             Toast.makeText(
                                 applicationContext,
-                                "สมัครสมาชิกไม่สำเร็จโปรดลองใหม่อีกครั้ง",
+                                "ชื่อผู้ใช้มีอยู่แล้วกรุณาตั้งชื่อผู้ใช้ใหม่",
 //                            response.body()?.message,
                                 Toast.LENGTH_LONG
                             ).show()
@@ -247,44 +296,6 @@ class RegisterActivity : BaseActivity() {
 //    }
 
 
-
-
-//    private fun init() {
-////        loadPhoneNumber()
-//        birthday!!.setOnClickListener {
-//            val mDateSetListener: DatePickerDialog.OnDateSetListener =
-//                DatePickerDialog.OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
-//                    myCalendar.set(Calendar.YEAR, year)
-//                    myCalendar.set(Calendar.MONTH, monthOfYear)
-//                    myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth)
-//                    updateLabel()
-//                }
-//            val d = DatePickerDialog(
-//                this,
-//                R.style.DialogTheme,
-//                mDateSetListener,
-//                myCalendar.get(Calendar.YEAR),
-//                myCalendar.get(Calendar.MONTH),
-//                myCalendar.get(Calendar.DAY_OF_MONTH)
-//            )
-//            d.show()
-//        }
-//
-//        AndroidThreeTen.init(this)
-//    }
-//
-//
-//
-//    private fun updateLabel() {
-//        val myFormat = "yyyy-MM-dd"
-//        val sdf = SimpleDateFormat(myFormat, Locale.US)
-//        val myFormatshow = "dd/MM/yyyy"
-//        val sdfShow = SimpleDateFormat(myFormatshow, Locale.US)
-//        dateTime = sdf.format(myCalendar.time)
-//
-//        birthday!!.setText(sdfShow.format(myCalendar.time))
-//
-//    }
 
 
 }

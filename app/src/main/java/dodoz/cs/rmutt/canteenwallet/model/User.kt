@@ -17,6 +17,16 @@ data class userRecy(
 
 )
 
+data class checkpasscon(
+
+    val wallet_id : String? = "",
+    val passwordcon: String? = ""
+
+
+)
+
+
+
 
 
 

@@ -50,7 +50,12 @@ class TransferActivity : BaseActivity() {
                     RetrofitClient.instance.SeachUser(walletid.toInt())
                         .enqueue(object : Callback<getSearch> {
                             override fun onFailure(call: Call<getSearch>, t: Throwable) {
-                                Toast.makeText(applicationContext, t.message, Toast.LENGTH_LONG).show()
+//                                Toast.makeText(applicationContext, t.message, Toast.LENGTH_LONG).show()
+                                Toast.makeText(
+                                    applicationContext,
+                                    "ไม่มีบัญชีนี้อยู่ในระบบ",
+                                    Toast.LENGTH_LONG
+                                ).show()
                             }
 
                             override fun onResponse(call: Call<getSearch>, response: Response<getSearch>) {

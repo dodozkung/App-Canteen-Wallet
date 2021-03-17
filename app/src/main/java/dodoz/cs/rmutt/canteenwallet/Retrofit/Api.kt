@@ -70,6 +70,13 @@ interface Api {
         @Field("EndAccID") EndAccID: String
     ):Call<List<userRecy>>
 
+    @POST ("checkpasscon")
+    @FormUrlEncoded
+    fun checkpasscon(
+        @Field("wallet_id") wallet_id: String,
+        @Field("passwordcon") passwordcon: String
+    ):Call<checkpass>
+
 
 
 }

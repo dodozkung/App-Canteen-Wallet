@@ -9,8 +9,14 @@ import com.google.zxing.integration.android.IntentIntegrator
 import com.journeyapps.barcodescanner.CaptureActivity
 import dodoz.cs.rmutt.canteenwallet.MainActivity
 import dodoz.cs.rmutt.canteenwallet.R
+import dodoz.cs.rmutt.canteenwallet.Retrofit.RetrofitClient
+import dodoz.cs.rmutt.canteenwallet.Retrofit.SharedPrefManager
 import dodoz.cs.rmutt.canteenwallet.Transfer.TransferConfirmActivity
+import dodoz.cs.rmutt.canteenwallet.model.getSearch
 import kotlinx.android.synthetic.main.activity_pay_qrcode.*
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class PayQrcodeActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -47,14 +53,55 @@ class PayQrcodeActivity : AppCompatActivity() {
 //                    Toast.makeText(this, "Scanned: " + qrscan, Toast.LENGTH_LONG).show()
 
 
-                    val intent = Intent(this, PayQrcodeCheckActivity::class.java)
+//                    val intent = Intent(this, PayQrcodeCheckActivity::class.java)
 
-                    intent.putExtra("qraccshop", qrscan)
 
-                    startActivity(intent)
-                    finish()
+
+
+                    RetrofitClient.instance.SeachUser(qrscan.toInt())
+                        .enqueue(object : Callback<getSearch> {
+                            override fun onFailure(call: Call<getSearch>, t: Throwable) {
+                                //Toast.makeText(applicationContext, t.message, Toast.LENGTH_LONG).show()
+                                Toast.makeText(
+                                    applicationContext,
+                                    "ไม่มีบัญชีนี้อยู่ในระบบ",
+                                    Toast.LENGTH_LONG
+                                ).show()
+                            }
+
+                            override fun onResponse(call: Call<getSearch>, response: Response<getSearch>) {
+                                if (response.body()?.error!!) {
+
+                                    SharedPrefManager.getInstance(applicationContext).getSearch(response.body()?.user!!)
+
+                                    val intent = Intent(applicationContext, PayQrcodeCheckActivity::class.java)
+                                    intent.putExtra("qraccshop", qrscan)
+                                    startActivity(intent)
+                                    finish()
+
+                                } else {
+//                        Toast.makeText(
+//                            applicationContext,
+//                            response.body()?.message,
+//                            Toast.LENGTH_LONG
+//                        ).show()
+                                    Toast.makeText(
+                                        applicationContext,
+                                        "ไม่เจอข้อมูล",
+                                        Toast.LENGTH_LONG
+                                    ).show()
+                                }
+
+                            }
+                        })
 
                 }
+
+
+
+
+
+
             } else {
                 super.onActivityResult(requestCode, resultCode, data)
             }

@@ -22,11 +22,11 @@ import retrofit2.Callback
 import retrofit2.Response
 
 
-class MainActivity : AppCompatActivity() {
+class MainShopActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activityshop_main)
 
         btnlogout.setOnClickListener {
 
@@ -67,13 +67,13 @@ class MainActivity : AppCompatActivity() {
 
         }
 
-        payqrcodemain.setOnClickListener {
-
-            var intent = Intent(this, PayQrcodeActivity::class.java)
-            startActivity(intent)
-
-
-        }
+//        payqrcodemain.setOnClickListener {
+//
+//            var intent = Intent(this, PayQrcodeActivity::class.java)
+//            startActivity(intent)
+//
+//
+//        }
 
 
     }
@@ -103,15 +103,6 @@ class MainActivity : AppCompatActivity() {
 
         if (status2.equals("off")) {
             confirmDialog()
-        }else{
-            val inflater = LayoutInflater.from(this)
-            val subView = inflater.inflate(R.layout.confirm_exit, null)
-            val builder = AlertDialog.Builder(this!!)
-            builder.setView(subView)
-            val dialog = builder.create()
-            dialog.setCancelable(false)
-            dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
-            dialog.cancel()
         }
 
 
@@ -124,7 +115,7 @@ class MainActivity : AppCompatActivity() {
                 override fun onResponse(call: Call<getData>, response: Response<getData>) {
                     if (!response.body()?.error!!) {
 
-                        SharedPrefManager.getInstance(this@MainActivity)
+                        SharedPrefManager.getInstance(this@MainShopActivity)
                             .getUser(response.body()?.user!!)
 
 
@@ -202,7 +193,7 @@ class MainActivity : AppCompatActivity() {
 
             SharedPrefManager.getInstance(this).clear()
 
-            var intent = Intent(this, MainActivity::class.java)
+            var intent = Intent(this, MainShopActivity::class.java)
             startActivity(intent)
             finish()
 

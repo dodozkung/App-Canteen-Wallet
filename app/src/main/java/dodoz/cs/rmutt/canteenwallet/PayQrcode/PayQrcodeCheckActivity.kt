@@ -29,9 +29,11 @@ class PayQrcodeCheckActivity : BaseActivity() {
         val sharedPrefManager = getSharedPreferences("my_shared_preff", Context.MODE_PRIVATE)
 
         val money = sharedPrefManager.getFloat("balance", 0.0f)
+        val nameshop = sharedPrefManager.getString("name1", "")
 
         val qrshop = intent.getStringExtra("qraccshop")
-        accshop!!.setText(qrshop)
+
+        accshop!!.setText(nameshop)
 //        Toast.makeText(this, qrshop , Toast.LENGTH_LONG).show()
 
 
@@ -46,10 +48,10 @@ class PayQrcodeCheckActivity : BaseActivity() {
             val walletid = accshop!!.text.toString()
             val amout = amoutshop!!.text.toString()
 
-            if (walletid.isEmpty()) {
-                masked_edit_text.error = "กรุณากรอกบัญชี"
-                return@setOnClickListener
-            }
+//            if (walletid.isEmpty()) {
+//                masked_edit_text.error = "กรุณากรอกบัญชี"
+//                return@setOnClickListener
+//            }
             if (amout.isEmpty()) {
                 Amout.error = "กรุณากรอกจำนวนเงิน"
                 return@setOnClickListener
@@ -57,19 +59,25 @@ class PayQrcodeCheckActivity : BaseActivity() {
 
             if (money!!.toFloat() >= amout.toFloat()){
 
-                RetrofitClient.instance.SeachUser(walletid.toInt())
-                    .enqueue(object : Callback<getSearch> {
-                        override fun onFailure(call: Call<getSearch>, t: Throwable) {
-                            Toast.makeText(applicationContext, t.message, Toast.LENGTH_LONG).show()
-                        }
-
-                        override fun onResponse(call: Call<getSearch>, response: Response<getSearch>) {
-                            if (response.body()?.error!!) {
-
-                                SharedPrefManager.getInstance(applicationContext).getSearch(response.body()?.user!!)
+//                RetrofitClient.instance.SeachUser(qrshop.toInt())
+//                    .enqueue(object : Callback<getSearch> {
+//                        override fun onFailure(call: Call<getSearch>, t: Throwable) {
+//                            //Toast.makeText(applicationContext, t.message, Toast.LENGTH_LONG).show()
+//                            Toast.makeText(
+//                                applicationContext,
+//                                "ไม่มีบัญชีนี้อยู่ในระบบ",
+//                                Toast.LENGTH_LONG
+//                            ).show()
+//                        }
+//
+//                        override fun onResponse(call: Call<getSearch>, response: Response<getSearch>) {
+//                            if (response.body()?.error!!) {
+//
+//                                SharedPrefManager.getInstance(applicationContext).getSearch(response.body()?.user!!)
 
                                 val intent = Intent(applicationContext, PayQrcodeConfirmActivity::class.java)
-                                intent.putExtra("accshop", walletid)
+                                intent.putExtra("accshop", qrshop)
+                                intent.putExtra("nameshop", nameshop)
                                 intent.putExtra("amoutshop", amout)
                                 startActivity(intent)
 
@@ -81,21 +89,21 @@ class PayQrcodeCheckActivity : BaseActivity() {
 //                        ).show()
                                 Toast.makeText(
                                     applicationContext,
-                                    "ไม่เจอข้อมูล",
+                                    "จำนวนเงินไม่เพียงพอ",
                                     Toast.LENGTH_LONG
                                 ).show()
                             }
 
                         }
-                    })
+//                    })
 
-            }else {
-                Toast.makeText(
-                    applicationContext,
-                    "จำนวนเงินไม่เพียงพอ",
-                    Toast.LENGTH_LONG
-                ).show()
-            }
+//            }else {
+//                Toast.makeText(
+//                    applicationContext,
+//                    "จำนวนเงินไม่เพียงพอ",
+//                    Toast.LENGTH_LONG
+//                ).show()
+//            }
 
 //            val amout = amoutshop!!.text.toString()
 //
@@ -111,35 +119,35 @@ class PayQrcodeCheckActivity : BaseActivity() {
 
     }
 
-    private fun init(){
+//    private fun init(){
+//
+//        val accshop = accshop!!.text.toString()
+//
+//        RetrofitClient.instance.SeachUser(accshop.toInt())
+//            .enqueue(object : Callback<getSearch> {
+//                override fun onFailure(call: Call<getSearch>, t: Throwable) {
+//                    Toast.makeText(applicationContext, t.message, Toast.LENGTH_LONG).show()
+//                }
+//
+//                override fun onResponse(call: Call<getSearch>, response: Response<getSearch>) {
+//                    if (!response.body()?.error!!) {
+//
+//                        SharedPrefManager.getInstance(applicationContext).getSearch(response.body()?.user!!)
+//
+//
+//
+//                    } else {
+//                        Toast.makeText(
+//                            applicationContext,
+//                            response.body()?.message,
+//                            Toast.LENGTH_LONG
+//                        ).show()
+//                    }
+//
+//                }
+//            })
+//    }
 
-        val accshop = accshop!!.text.toString()
-
-        RetrofitClient.instance.SeachUser(accshop.toInt())
-            .enqueue(object : Callback<getSearch> {
-                override fun onFailure(call: Call<getSearch>, t: Throwable) {
-                    Toast.makeText(applicationContext, t.message, Toast.LENGTH_LONG).show()
-                }
-
-                override fun onResponse(call: Call<getSearch>, response: Response<getSearch>) {
-                    if (!response.body()?.error!!) {
-
-                        SharedPrefManager.getInstance(applicationContext).getSearch(response.body()?.user!!)
 
 
-
-                    } else {
-                        Toast.makeText(
-                            applicationContext,
-                            response.body()?.message,
-                            Toast.LENGTH_LONG
-                        ).show()
-                    }
-
-                }
-            })
-    }
-
-
-
-}
+//}

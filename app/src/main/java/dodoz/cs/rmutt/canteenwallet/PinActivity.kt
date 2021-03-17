@@ -43,7 +43,8 @@ class PinActivity : AppCompatActivity() {
         val sharedPrefManager = getSharedPreferences("my_shared_preff", Context.MODE_PRIVATE)
 
         val walletid = sharedPrefManager.getString("wallet_id", "")
-        val status =  sharedPrefManager.getString("passconfirm", "")
+        val status = sharedPrefManager.getString("passconfirm", "")
+
         val EndAcc = intent.getStringExtra("walletid2")
         val amout = intent.getStringExtra("amout")
 
@@ -60,71 +61,141 @@ class PinActivity : AppCompatActivity() {
         val pinview1 = findViewById<Pinview>(R.id.pinview1)
 
         pinview1.setPinViewEventListener { pinview, fromUser ->
+
+            RetrofitClient.instance.checkpasscon(walletid!!, pinview1.value)
+                .enqueue(object : Callback<checkpass> {
+                    override fun onFailure(call: Call<checkpass>, t: Throwable) {
+                        Toast.makeText(applicationContext, t.message, Toast.LENGTH_LONG).show()
+                    }
+
+                    override fun onResponse(
+                        call: Call<checkpass>,
+                        response: Response<checkpass>
+                    ) {
+                        if (!response.body()?.error!!) {
+
+                            val intent = Intent(applicationContext, MainActivity::class.java)
+                            startActivity(intent)
+
+                            Toast.makeText(
+                                applicationContext,
+                                "ทำรายการสำเร็จ",
+                                Toast.LENGTH_LONG
+                            ).show()
+
+                            RetrofitClient.instance.postTransferT(walletid!!,EndAcc,amout.toFloat())
+                                .enqueue(object : Callback<Transfer> {
+                                    override fun onFailure(call: Call<Transfer>, t: Throwable) {
+//                                        Toast.makeText(applicationContext, t.message, Toast.LENGTH_LONG).show()
+                                        Toast.makeText(applicationContext, "ทำรายการไม่สำเร็จ", Toast.LENGTH_LONG).show()
+                                    }
+
+                                    override fun onResponse(call: Call<Transfer>, response: Response<Transfer>) {
+                                        if (response.body()?.user!!) {
+
+                                            val intent = Intent(applicationContext, MainActivity::class.java)
+                                            startActivity(intent)
+
+                                            Toast.makeText(
+                                                applicationContext,
+                                                "ทำรายการสำเร็จ",
+                                                Toast.LENGTH_LONG
+                                            ).show()
+
+
+                                        } else {
+                                            Toast.makeText(
+                                                applicationContext,
+                                                "ไม่สามารถทำรายการได้",
+                                                Toast.LENGTH_LONG
+                                            ).show()
+                                        }
+
+                                    }
+                                })
+
+
+                        } else {
+                            Toast.makeText(
+                                applicationContext,
+                                "ไม่สามารถทำรายการได้",
+                                Toast.LENGTH_LONG
+                            ).show()
+                        }
+
+                    }
+                })
+        }
+
+
+//        val pinview1 = findViewById<Pinview>(R.id.pinview1)
+//
+//        pinview1.setPinViewEventListener { pinview, fromUser ->
 //            Toast.makeText(
 //                this,
 //                pinview.value,
 //                Toast.LENGTH_SHORT
 //            ).show()
 
-            if (pinview1.value == status) {
-
-                RetrofitClient.instance.postTransferT(walletid!!,EndAcc,amout.toFloat())
-                    .enqueue(object : Callback<Transfer> {
-                        override fun onFailure(call: Call<Transfer>, t: Throwable) {
-                            Toast.makeText(applicationContext, t.message, Toast.LENGTH_LONG).show()
-                        }
-
-                        override fun onResponse(call: Call<Transfer>, response: Response<Transfer>) {
-                            if (response.body()?.user!!) {
-
-                                val intent = Intent(applicationContext, MainActivity::class.java)
-                                startActivity(intent)
-
-                                Toast.makeText(
-                                    applicationContext,
-                                    "ทำรายการสำเร็จ",
-                                    Toast.LENGTH_LONG
-                                ).show()
-
-//                                SharedPrefManager.getInstance(applicationContext).getSearch(response.body()?.user!!)
-
-//                                TransferTr()
-
-
-
-
-
-                            } else {
+//            if (pinview1.value == status) {
+//
+//                RetrofitClient.instance.postTransferT(walletid!!,EndAcc,amout.toFloat())
+//                    .enqueue(object : Callback<Transfer> {
+//                        override fun onFailure(call: Call<Transfer>, t: Throwable) {
+//                            Toast.makeText(applicationContext, t.message, Toast.LENGTH_LONG).show()
+//                        }
+//
+//                        override fun onResponse(call: Call<Transfer>, response: Response<Transfer>) {
+//                            if (response.body()?.user!!) {
+//
+//                                val intent = Intent(applicationContext, MainActivity::class.java)
+//                                startActivity(intent)
+//
 //                                Toast.makeText(
 //                                    applicationContext,
-//                                    response.body()?.message,
+//                                    "ทำรายการสำเร็จ",
 //                                    Toast.LENGTH_LONG
 //                                ).show()
-                                Toast.makeText(
-                                    applicationContext,
-                                    "ไม่สามารถทำรายการได้",
-                                    Toast.LENGTH_LONG
-                                ).show()
-                            }
-
-                        }
-                    })
-
-
-
-            } else {
-                Toast.makeText(
-                    this,
-                    "รหัสไม่ถูกต้องกรุณาลองใหม่",
-                    Toast.LENGTH_SHORT
-                ).show()
-            }
-
-
-        }
-
-
-    }
+//
+////                                SharedPrefManager.getInstance(applicationContext).getSearch(response.body()?.user!!)
+//
+////                                TransferTr()
+//
+//
+//
+//
+//
+//                            } else {
+////                                Toast.makeText(
+////                                    applicationContext,
+////                                    response.body()?.message,
+////                                    Toast.LENGTH_LONG
+////                                ).show()
+//                                Toast.makeText(
+//                                    applicationContext,
+//                                    "ไม่สามารถทำรายการได้",
+//                                    Toast.LENGTH_LONG
+//                                ).show()
+//                            }
+//
+//                        }
+//                    })
+//
+//
+//
+//            } else {
+//                Toast.makeText(
+//                    this,
+//                    "รหัสไม่ถูกต้องกรุณาลองใหม่",
+//                    Toast.LENGTH_SHORT
+//                ).show()
+//            }
+//
+//
+//        }
+//
+//
+//    }
 
 //    private fun init(){
 //
@@ -200,10 +271,8 @@ class PinActivity : AppCompatActivity() {
 //            })
 
 
-
-
-
 //    }
+    }
 
 
     override fun dispatchTouchEvent(ev: MotionEvent?): Boolean {

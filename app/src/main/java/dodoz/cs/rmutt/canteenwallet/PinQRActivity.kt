@@ -61,69 +61,68 @@ class PinQRActivity : AppCompatActivity() {
         val pinview1 = findViewById<Pinview>(R.id.pinview1)
 
         pinview1.setPinViewEventListener { pinview, fromUser ->
-//            Toast.makeText(
-//                this,
-//                pinview.value,
-//                Toast.LENGTH_SHORT
-//            ).show()
 
-            if (pinview1.value == status) {
+            RetrofitClient.instance.checkpasscon(walletid!!, pinview1.value)
+                .enqueue(object : Callback<checkpass> {
+                    override fun onFailure(call: Call<checkpass>, t: Throwable) {
+                        Toast.makeText(applicationContext, t.message, Toast.LENGTH_LONG).show()
+                    }
 
-                RetrofitClient.instance.postTransferP(walletid!!,EndAcc,amout.toFloat())
-                    .enqueue(object : Callback<TransferA> {
-                        override fun onFailure(call: Call<TransferA>, t: Throwable) {
-                            Toast.makeText(applicationContext, t.message, Toast.LENGTH_LONG).show()
+                    override fun onResponse(
+                        call: Call<checkpass>,
+                        response: Response<checkpass>
+                    ) {
+                        if (!response.body()?.error!!) {
+
+                            val intent = Intent(applicationContext, MainActivity::class.java)
+                            startActivity(intent)
+
+                            Toast.makeText(
+                                applicationContext,
+                                "ทำรายการสำเร็จ",
+                                Toast.LENGTH_LONG
+                            ).show()
+
+                            RetrofitClient.instance.postTransferP(walletid!!,EndAcc,amout.toFloat())
+                                .enqueue(object : Callback<TransferA> {
+                                    override fun onFailure(call: Call<TransferA>, t: Throwable) {
+//                                        Toast.makeText(applicationContext, t.message, Toast.LENGTH_LONG).show()
+                                        Toast.makeText(applicationContext, "ทำรายการไม่สำเร็จ", Toast.LENGTH_LONG).show()
+                                    }
+                                    override fun onResponse(call: Call<TransferA>, response: Response<TransferA>) {
+                                        if (response.body()?.user!!) {
+
+                                            val intent = Intent(applicationContext, MainActivity::class.java)
+                                            startActivity(intent)
+
+                                            Toast.makeText(
+                                                applicationContext,
+                                                "ทำรายการสำเร็จ",
+                                                Toast.LENGTH_LONG
+                                            ).show()
+
+                                        } else {
+                                            Toast.makeText(
+                                                applicationContext,
+                                                "ไม่สามารถทำรายการได้",
+                                                Toast.LENGTH_LONG
+                                            ).show()
+                                        }
+
+                                    }
+                                })
+
+                        } else {
+                            Toast.makeText(
+                                applicationContext,
+                                "ไม่สามารถทำรายการได้",
+                                Toast.LENGTH_LONG
+                            ).show()
                         }
 
-                        override fun onResponse(call: Call<TransferA>, response: Response<TransferA>) {
-                            if (response.body()?.user!!) {
-
-                                val intent = Intent(applicationContext, MainActivity::class.java)
-                                startActivity(intent)
-
-                                Toast.makeText(
-                                    applicationContext,
-                                    "ทำรายการสำเร็จ",
-                                    Toast.LENGTH_LONG
-                                ).show()
-
-//                                SharedPrefManager.getInstance(applicationContext).getSearch(response.body()?.user!!)
-
-//                                TransferTr()
-
-
-
-
-
-                            } else {
-//                                Toast.makeText(
-//                                    applicationContext,
-//                                    response.body()?.message,
-//                                    Toast.LENGTH_LONG
-//                                ).show()
-                                Toast.makeText(
-                                    applicationContext,
-                                    "ไม่สามารถทำรายการได้",
-                                    Toast.LENGTH_LONG
-                                ).show()
-                            }
-
-                        }
-                    })
-
-
-
-            } else {
-                Toast.makeText(
-                    this,
-                    "รหัสไม่ถูกต้องกรุณาลองใหม่",
-                    Toast.LENGTH_SHORT
-                ).show()
-            }
-
-
+                    }
+                })
         }
-
 
     }
 

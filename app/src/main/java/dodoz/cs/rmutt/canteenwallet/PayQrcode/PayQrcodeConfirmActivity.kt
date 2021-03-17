@@ -25,11 +25,15 @@ class PayQrcodeConfirmActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_pay_qrcode_confirm)
 
-        init()
-        recheck()
+//        init()
+//        recheck()
 
         val accshop = intent.getStringExtra("accshop")
+        val nameshop = intent.getStringExtra("nameshop")
+
         showaccshop!!.setText(accshop)
+        shownameshop!!.setText(nameshop)
+
 //        Toast.makeText(this, walletid , Toast.LENGTH_LONG).show()
         val amoutshop = intent.getStringExtra("amoutshop")
         showamout!!.setText(amoutshop)
@@ -51,22 +55,22 @@ class PayQrcodeConfirmActivity : BaseActivity() {
 
     }
 
-    private fun init(){
-
-        val sharedPrefManager = getSharedPreferences("my_shared_preff", Context.MODE_PRIVATE)
-
-        val name1 = sharedPrefManager.getString("name1", "")
-
-//        Toast.makeText(this, name1, Toast.LENGTH_LONG).show()
-        shownameshop!!.setText(name1)
-
-    }
-
-    private fun recheck(){
-        Handler().postDelayed({
-            init()
-        },300)
-    }
+//    private fun init(){
+//
+//        val sharedPrefManager = getSharedPreferences("my_shared_preff", Context.MODE_PRIVATE)
+//
+//        val name1 = sharedPrefManager.getString("name1", "")
+//
+////        Toast.makeText(this, name1, Toast.LENGTH_LONG).show()
+//        shownameshop!!.setText(name1)
+//
+//    }
+//
+//    private fun recheck(){
+//        Handler().postDelayed({
+//            init()
+//        },300)
+//    }
 
 
 }

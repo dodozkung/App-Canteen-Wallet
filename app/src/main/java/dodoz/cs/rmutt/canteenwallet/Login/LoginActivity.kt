@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.widget.Toast
 import dodoz.cs.rmutt.canteenwallet.BaseActivity
 import dodoz.cs.rmutt.canteenwallet.MainActivity
+import dodoz.cs.rmutt.canteenwallet.MainShopActivity
 import dodoz.cs.rmutt.canteenwallet.R
 import dodoz.cs.rmutt.canteenwallet.Retrofit.Api
 import dodoz.cs.rmutt.canteenwallet.Retrofit.RetrofitClient
@@ -53,7 +54,7 @@ class LoginActivity : BaseActivity() {
             RetrofitClient.instance.userLogin(username, password)
                 .enqueue(object: Callback<LoginResponse> {
                     override fun onFailure(call: Call<LoginResponse>, t: Throwable) {
-                        Toast.makeText(applicationContext, t.message, Toast.LENGTH_LONG).show()
+                        Toast.makeText(applicationContext, "ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง", Toast.LENGTH_LONG).show()
                     }
 
                     override fun onResponse(call: Call<LoginResponse>, response: Response<LoginResponse>) {
@@ -61,37 +62,31 @@ class LoginActivity : BaseActivity() {
 
                             SharedPrefManager.getInstance(applicationContext).saveUser(response.body()?.user!!)
 //
-//                            val checkstatus = response.body()?.user!!.status
-//                            val checkstatus2 = response.body()?.user!!.status2
-//                            if (checkstatus == "user") {
-//                                if (checkstatus2 == "on") {
+                            val checkstatus = response.body()?.user!!.status
+                            if (checkstatus == "user") {
                                     val intent = Intent(applicationContext, MainActivity::class.java)
                                     intent.flags =
                                         Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
 
                                     startActivity(intent)
-//                                }
-//
-//                            }else {
-//                                Toast.makeText(applicationContext, "ชื่อผู้ใช้นี้ไม่สามารถใช้งานแอปพลิเคชันได้", Toast.LENGTH_LONG).show()
-//                            }
 
-                        }else{
-//                            Toast.makeText(applicationContext, response.body()?.message, Toast.LENGTH_LONG).show()
-                            Toast.makeText(applicationContext, "ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง", Toast.LENGTH_LONG).show()
+                                } else if (checkstatus == "shop"){
+                                    val intent = Intent(applicationContext, MainShopActivity::class.java)
+                                    intent.flags =
+                                    Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+
+                                    startActivity(intent)
+
+                            } else {
+                                Toast.makeText(applicationContext, "ชื่อผู้ใช้นี้ไม่สามารถใช้งานแอปพลิเคชันได้", Toast.LENGTH_LONG).show()
+                            }
+                    }else {
+                            Toast.makeText(applicationContext, "ชื่อผู้ใช้นี้ไม่สามารถใช้งานแอปพลิเคชันได้", Toast.LENGTH_LONG).show()
                         }
-
-
-
-
-
                     }
                 })
-
-
-
-
         }
+
 
         btnregis.setOnClickListener {
             val intent = Intent(this, RegisterActivity::class.java)
