@@ -91,27 +91,7 @@
                 android:layout_below="@id/txt1"
                 android:gravity="center">
 
-<!--                <com.chaos.view.PinView-->
-<!--                    android:id="@+id/firstPinView"-->
-<!--                    style="@style/PinWidget.PinView"-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:inputType="numberPassword"-->
-<!--                    android:hint=""-->
 
-<!--                    android:cursorVisible="true"-->
-<!--                    android:padding="10dp"-->
-<!--                    android:textColor="@color/white"-->
-<!--                    android:textSize="18sp"-->
-<!--                    android:textStyle="bold"-->
-<!--                    app:itemCount="6"-->
-<!--                    app:itemHeight="48dp"-->
-<!--                    app:itemRadius="4dp"-->
-<!--                    app:itemSpacing="10dp"-->
-<!--                    app:itemWidth="48dp"-->
-<!--                    app:lineColor="@color/white"-->
-<!--                    app:lineWidth="2dp"-->
-<!--                    app:viewType="rectangle" />-->
                 <com.goodiebag.pinview.Pinview
                     android:id="@+id/pinview1"
                     android:layout_width="match_parent"
@@ -126,8 +106,31 @@
                     app:pinHeight="50dp"
                     app:pinLength="6"
                     app:textSize="15dp"
-                    app:pinWidth="45dp"/>
+                    app:pinWidth="45dp"
+                    />
+
+<!--                <com.chaos.view.PinView-->
+<!--                    android:id="@+id/pinview1"-->
+<!--                    style="@style/PinWidget.PinView"-->
+<!--                    android:layout_width="300dp"-->
+<!--                    android:layout_height="match_parent"-->
+<!--                    android:cursorVisible="true"-->
+<!--                    android:inputType="number"-->
+<!--                    android:textColor="@color/white"-->
+<!--                    android:textSize="20dp"-->
+<!--                    android:textStyle="bold"-->
+<!--                    app:cursorColor="@color/white"-->
+<!--                    app:itemCount="6"-->
+<!--                    app:lineColor="@color/white"-->
+<!--                    app:lineWidth="1dp"-->
+<!--                    app:viewType="line" />-->
+
             </LinearLayout>
+
+
+
+
+
 
 
 

@@ -3,10 +3,7 @@ package dodoz.cs.rmutt.canteenwallet.Login
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
-import dodoz.cs.rmutt.canteenwallet.BaseActivity
-import dodoz.cs.rmutt.canteenwallet.MainActivity
-import dodoz.cs.rmutt.canteenwallet.MainShopActivity
-import dodoz.cs.rmutt.canteenwallet.R
+import dodoz.cs.rmutt.canteenwallet.*
 import dodoz.cs.rmutt.canteenwallet.Retrofit.Api
 import dodoz.cs.rmutt.canteenwallet.Retrofit.RetrofitClient
 import dodoz.cs.rmutt.canteenwallet.Retrofit.SharedPrefManager
@@ -24,6 +21,11 @@ class LoginActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
+
+        forgetpassword.setOnClickListener {
+            val intent = Intent(this, fotgetpasswordActivity::class.java)
+            startActivity(intent)
+        }
 
         btnlogin.setOnClickListener {
             val username = edtid.text.toString().trim()
@@ -44,7 +46,7 @@ class LoginActivity : BaseActivity() {
             RetrofitClient.instance.userLogin(username, password)
                 .enqueue(object: Callback<LoginResponse> {
                     override fun onFailure(call: Call<LoginResponse>, t: Throwable) {
-                        Toast.makeText(applicationContext, "ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง", Toast.LENGTH_LONG).show()
+                        Toast.makeText(applicationContext, "ไม่สามารถเชื่อมต่อเซิฟเวอร์ได้", Toast.LENGTH_LONG).show()
                     }
 
                     override fun onResponse(call: Call<LoginResponse>, response: Response<LoginResponse>) {
@@ -71,7 +73,7 @@ class LoginActivity : BaseActivity() {
                                 Toast.makeText(applicationContext, "ชื่อผู้ใช้นี้ไม่สามารถใช้งานแอปพลิเคชันได้", Toast.LENGTH_LONG).show()
                             }
                     }else {
-                            Toast.makeText(applicationContext, "ชื่อผู้ใช้นี้ไม่สามารถใช้งานแอปพลิเคชันได้", Toast.LENGTH_LONG).show()
+                            Toast.makeText(applicationContext, "ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง", Toast.LENGTH_LONG).show()
                         }
                     }
                 })

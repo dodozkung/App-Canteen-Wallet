@@ -78,9 +78,9 @@ interface Api {
     @FormUrlEncoded
     fun checkidcard(@Field("idcard") idcard:String):Call<checkidcard>
 
-    @PUT("updatepassword")
+    @PUT("rePassword")
     @FormUrlEncoded
-    fun repassword(@Field("newpassword") newpassword:String,
+    fun repassword(@Field("newpassword") newpassword: String,
                     @Field("idcard") idcard: String):Call<repassword>
 
 

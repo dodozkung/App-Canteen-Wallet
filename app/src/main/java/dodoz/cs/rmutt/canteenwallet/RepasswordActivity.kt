@@ -13,34 +13,44 @@ import dodoz.cs.rmutt.canteenwallet.model.DefaultResponse
 import dodoz.cs.rmutt.canteenwallet.model.checkidcard
 import dodoz.cs.rmutt.canteenwallet.model.repassword
 import kotlinx.android.synthetic.main.activity_fotgetpassword.*
+import kotlinx.android.synthetic.main.activity_pin.*
 import kotlinx.android.synthetic.main.activity_register.*
 import kotlinx.android.synthetic.main.activity_repassword.*
 import kotlinx.android.synthetic.main.confirm_status.view.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import kotlinx.android.synthetic.main.activity_repassword.toolbar
 
-class RepasswordActivity : AppCompatActivity() {
+class RepasswordActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_repassword)
+
+        toolbar.setOnClickListener {
+            val intent = Intent(this, LoginActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
+
 
         btnconrepassword.setOnClickListener {
 
             val password = fgpassword.text.toString().trim()
             val passwordcon = fgcpassword.text.toString().trim()
 
+
             if (password.isEmpty() || password.length < 6) {
-                edtpass.error = "กรุณากรอกรหัสผ่านมากกว่า 5 ตัว"
+                fgpassword.error = "กรุณากรอกรหัสผ่านมากกว่า 5 ตัว"
                 return@setOnClickListener
             }
-            if (passwordcon.isEmpty() || passwordcon.length < 6) {
-                edtconpass.error = "กรุณากรอกรหัสผ่านมากกว่า 5 ตัว"
+            else if (passwordcon.isEmpty() || passwordcon.length < 6) {
+                fgcpassword.error = "กรุณากรอกรหัสผ่านมากกว่า 5 ตัว"
 
                 return@setOnClickListener
             }
-            if (!passwordcon.equals(password)) {
-                edtconpass.error = "รหัสผ่านไม่ตรงกัน"
+            else if (!passwordcon.equals(password)) {
+                fgcpassword.error = "รหัสผ่านไม่ตรงกัน"
 
                 return@setOnClickListener
             }else {
@@ -49,6 +59,7 @@ class RepasswordActivity : AppCompatActivity() {
 
 
         }
+
     }
 
     private fun confirmDialog() {
@@ -58,7 +69,7 @@ class RepasswordActivity : AppCompatActivity() {
         val ndely = subView.findViewById<Button>(R.id.btnexit)
         val ndeln = subView.findViewById<Button>(R.id.btnnoexit)
 
-        subView.textDialog.text = "ยืนยันการสมัครสมาชิก"
+        subView.textDialog.text = "ยืนยันการเปลี่ยนรหัสผ่าน"
 
         val builder = AlertDialog.Builder(this!!)
         builder.setView(subView)
@@ -69,11 +80,12 @@ class RepasswordActivity : AppCompatActivity() {
         ndely.setOnClickListener {
             dialog.dismiss()
 
-            val password = fgpassword.text.toString().trim()
+            val newpassword = fgpassword.text.toString().trim()
             val idcard = intent.getStringExtra("idcard")
+//            val idcard = "1100201428510"
 
 
-            RetrofitClient.instance.repassword(password,idcard)
+            RetrofitClient.instance.repassword(newpassword,idcard)
                 .enqueue(object : Callback<repassword> {
                     override fun onFailure(call: Call<repassword>, t: Throwable,) {
                         Toast.makeText(applicationContext, "ไม่สามารถเชื่อมต่อเซิฟเวอร์ได้", Toast.LENGTH_LONG).show()
@@ -85,10 +97,10 @@ class RepasswordActivity : AppCompatActivity() {
                     ) {
                         if (!response.body()?.error!!) {
 
-
-                            var intent = Intent(applicationContext, RepasswordActivity::class.java)
+                            var intent = Intent(applicationContext, LoginActivity::class.java)
                             startActivity(intent)
                             finish()
+
                             Toast.makeText(
                                 applicationContext,
                                 "เปลี่ยนรหัสผ่านเรียบร้อยแล้ว",

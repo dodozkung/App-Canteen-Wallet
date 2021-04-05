@@ -115,10 +115,11 @@
 
         <RelativeLayout
             android:id="@+id/forgetpassword"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_width="100dp"
+            android:layout_height="30dp"
             android:layout_marginHorizontal="45dp"
             android:layout_marginVertical="10dp"
+            android:gravity="center"
             >
 
             <TextView
@@ -138,7 +139,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:layout_marginTop="15dp"
+
             >
 
         <Button

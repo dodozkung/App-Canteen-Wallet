@@ -11,19 +11,35 @@ import dodoz.cs.rmutt.canteenwallet.model.checkidcard
 import kotlinx.android.synthetic.main.activity_fotgetpassword.*
 import kotlinx.android.synthetic.main.activity_register.*
 import kotlinx.android.synthetic.main.activity_register.edtname
+import kotlinx.android.synthetic.main.activity_repassword.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import kotlinx.android.synthetic.main.activity_fotgetpassword.toolbar
 
-class fotgetpasswordActivity : AppCompatActivity() {
+class fotgetpasswordActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_fotgetpassword)
+
+        toolbar.setOnClickListener {
+            val intent = Intent(this, LoginActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
+
 
         btncheckidcard.setOnClickListener {
 
         val idcard = fgidcard.text.toString().trim()
 
+            if (idcard.isEmpty()) {
+                fgidcard.error = "โปรดกรอกเลขบัตรประชาชน"
+                return@setOnClickListener
+            }else if (idcard.length != 13){
+                fgidcard.error = "โปรดกรอกเลขบัตรประชาชนให้ครบ 13 หลัก"
+                return@setOnClickListener
+            }else{
 
         RetrofitClient.instance.checkidcard(idcard)
             .enqueue(object : Callback<checkidcard> {
@@ -53,7 +69,8 @@ class fotgetpasswordActivity : AppCompatActivity() {
                     }
                 }
 
-            })
+            }) }
+
         }
     }
 }

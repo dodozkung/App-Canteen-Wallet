@@ -44,7 +44,7 @@ class PayQrcodeCheckActivity : BaseActivity() {
 //                return@setOnClickListener
 //            }
             if (amout.isEmpty()) {
-                Amout.error = "กรุณากรอกจำนวนเงิน"
+                amoutshop.error = "กรุณากรอกจำนวนเงิน"
                 return@setOnClickListener
             }
 
