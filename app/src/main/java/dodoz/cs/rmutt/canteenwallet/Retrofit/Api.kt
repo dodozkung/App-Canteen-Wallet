@@ -3,10 +3,7 @@ package dodoz.cs.rmutt.canteenwallet.Retrofit
 import dodoz.cs.rmutt.canteenwallet.model.*
 import io.reactivex.Observable
 import retrofit2.Call
-import retrofit2.http.Field
-import retrofit2.http.FormUrlEncoded
-import retrofit2.http.GET
-import retrofit2.http.POST
+import retrofit2.http.*
 
 
 interface Api {
@@ -77,6 +74,14 @@ interface Api {
         @Field("passwordcon") passwordcon: String
     ):Call<checkpass>
 
+    @POST("checkpassidcard")
+    @FormUrlEncoded
+    fun checkidcard(@Field("idcard") idcard:String):Call<checkidcard>
+
+    @PUT("updatepassword")
+    @FormUrlEncoded
+    fun repassword(@Field("newpassword") newpassword:String,
+                    @Field("idcard") idcard: String):Call<repassword>
 
 
 }

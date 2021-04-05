@@ -30,6 +30,7 @@ class SplashActivity : AppCompatActivity() {
 //            startActivity(Intent(this@SplashActivity, LoginActivity::class.java))
 //            finish()
             checkconntype()
+
         },3000)
 
 
@@ -60,9 +61,10 @@ class SplashActivity : AppCompatActivity() {
     private fun isonline(){
         if (!SharedPrefManager.getInstance(this).isLoggedIn) {
             val intent = Intent(applicationContext, MainActivity::class.java)
-            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+//            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
 
             startActivity(intent)
+
         }else {
             val intent = Intent(applicationContext, LoginActivity::class.java)
             startActivity(intent)

@@ -4,19 +4,10 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
-import android.widget.Toast
 import dodoz.cs.rmutt.canteenwallet.BaseActivity
 import dodoz.cs.rmutt.canteenwallet.PinActivity
 import dodoz.cs.rmutt.canteenwallet.R
-import dodoz.cs.rmutt.canteenwallet.Retrofit.RetrofitClient
-import dodoz.cs.rmutt.canteenwallet.Retrofit.SharedPrefManager
-import dodoz.cs.rmutt.canteenwallet.model.getData
-import dodoz.cs.rmutt.canteenwallet.model.getSearch
-import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_transfer_confirm.*
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 class TransferConfirmActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -45,7 +36,7 @@ class TransferConfirmActivity : BaseActivity() {
         }
 
         checktransfer!!.setOnClickListener {
-            val intent = Intent(this,PinActivity::class.java)
+            val intent = Intent(this, PinActivity::class.java)
 //            val walletid = intent.getStringExtra("walletid")
 
             intent.putExtra("walletid2", walletid)

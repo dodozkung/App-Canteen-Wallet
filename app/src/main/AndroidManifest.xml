@@ -14,9 +14,8 @@
     <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-
-    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
@@ -26,12 +25,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar"
+        android:usesCleartextTraffic="true"
         tools:replace="android:label">
+        <activity android:name=".RepasswordActivity"></activity>
+        <activity android:name=".fotgetpasswordActivity" />
         <activity
             android:name=".ReportActivity"
             android:label="@string/title_activity_report"
-            android:theme="@style/AppTheme.NoActionBar.NoActionBar"></activity>
-<!--        <activity android:name=".recycleview" />-->
+            android:theme="@style/AppTheme.NoActionBar.NoActionBar" /> <!-- <activity android:name=".recycleview" /> -->
         <activity
             android:name=".CaptureActivity"
             android:screenOrientation="fullSensor"

@@ -70,6 +70,7 @@
                 android:layout_below="@id/logopin"
                 android:layout_marginTop="20dp">
 
+
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -125,12 +126,9 @@
                     app:pinHeight="50dp"
                     app:pinLength="6"
                     app:textSize="15dp"
-
                     app:pinWidth="45dp"/>
-
-
-
             </LinearLayout>
+
 
 
 

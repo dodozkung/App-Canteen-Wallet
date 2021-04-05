@@ -89,6 +89,7 @@ class RegisterActivity : BaseActivity() {
             }
             else if (!idcard.isEmpty() || idcard.length == 13) {
                 if (isValidThaiId(idcard) == true){
+                    //เช็คบัตรประชาชน
                     if (pw.isEmpty() || pw.length < 6) {
                         edtpw.error = "กรุณากรอกรหัสธุรกรรม 6 ตัว"
 

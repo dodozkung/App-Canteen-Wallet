@@ -12,6 +12,10 @@ data class TransferA(val error: Boolean, val  message: String, val user: Boolean
 
 data class checkpass(val error: Boolean, val  message: String , val user: Boolean)
 
+data class checkidcard(val error: Boolean, val  message: String , val user: Boolean)
+
+data class repassword(val error: Boolean, val  message: String , val user: Boolean)
+
 
 
 

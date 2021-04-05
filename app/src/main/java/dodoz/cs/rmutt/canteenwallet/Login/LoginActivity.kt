@@ -21,19 +21,9 @@ import retrofit2.Response
 
 class LoginActivity : BaseActivity() {
 
-    lateinit var myAPI: Api
-    var compositeDisposable = CompositeDisposable()
-
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
-
-
-
-
-
 
         btnlogin.setOnClickListener {
             val username = edtid.text.toString().trim()

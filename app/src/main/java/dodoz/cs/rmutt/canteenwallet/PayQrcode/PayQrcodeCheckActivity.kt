@@ -2,24 +2,15 @@ package dodoz.cs.rmutt.canteenwallet.PayQrcode
 
 import android.content.Context
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import dodoz.cs.rmutt.canteenwallet.BaseActivity
-import dodoz.cs.rmutt.canteenwallet.PinActivity
 import dodoz.cs.rmutt.canteenwallet.R
-import dodoz.cs.rmutt.canteenwallet.Retrofit.RetrofitClient
-import dodoz.cs.rmutt.canteenwallet.Retrofit.SharedPrefManager
-import dodoz.cs.rmutt.canteenwallet.Transfer.TransferConfirmActivity
-import dodoz.cs.rmutt.canteenwallet.model.getSearch
 import kotlinx.android.synthetic.main.activity_pay_qrcode_check.*
 import kotlinx.android.synthetic.main.activity_pay_qrcode_check.cctranfer
 import kotlinx.android.synthetic.main.activity_pay_qrcode_check.cftranfer
 import kotlinx.android.synthetic.main.activity_transfer.*
 import kotlinx.android.synthetic.main.activity_transfer_confirm.*
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 class PayQrcodeCheckActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

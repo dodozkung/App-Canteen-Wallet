@@ -105,15 +105,48 @@
                 android:drawableLeft="@drawable/ic_padlock"
                 />
 
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="right">
+
+        <RelativeLayout
+            android:id="@+id/forgetpassword"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginHorizontal="45dp"
+            android:layout_marginVertical="10dp"
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ลืมรหัสผ่าน"
+                android:textStyle="bold"
+                android:textColor="@color/white"
+                />
+
+        </RelativeLayout>
 
         </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="15dp"
+            >
 
         <Button
             android:id="@+id/btnlogin"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginHorizontal="40dp"
-            android:layout_marginTop="30dp"
+
             android:background="@drawable/btnlogin"
             android:text="เข้าสู่ระบบ"
             android:textColor="@color/white"
@@ -131,6 +164,8 @@
             android:textColor="@color/white"
             android:textSize="16sp"
             android:textStyle="bold" />
+
+        </LinearLayout>
 
     </LinearLayout>
 

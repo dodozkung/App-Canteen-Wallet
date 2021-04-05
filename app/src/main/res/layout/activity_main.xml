@@ -14,22 +14,16 @@
         android:layout_height="wrap_content">
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <ImageView
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_marginLeft="25dp"
-                android:layout_marginTop="30dp"
-                android:src="@drawable/ic_profile" />
+            android:orientation="vertical"
+            android:layout_marginTop="35dp">
 
             <TextView
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
-                android:layout_marginTop="10dp"
+
                 android:text="My Account"
                 android:textColor="@color/white"
                 android:textSize="15dp"
@@ -38,7 +32,7 @@
 
             <TextView
                 android:id="@+id/acccount"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="5dp"
@@ -47,6 +41,22 @@
                 android:textStyle="bold" />
 
         </LinearLayout>
+
+<!--        <RelativeLayout-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginLeft="95dp"-->
+<!--            android:layout_centerVertical="true" >-->
+
+<!--            <ImageView-->
+<!--                android:id="@+id/btnsetting"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:src="@drawable/ic_setting"-->
+<!--                android:layout_centerInParent="true"-->
+<!--                android:textColor="@color/white"-->
+<!--                android:textSize="15dp" />-->
+<!--        </RelativeLayout>-->
 
         <RelativeLayout
             android:layout_width="100dp"
@@ -174,6 +184,7 @@
 
 
         <LinearLayout
+
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="5"
